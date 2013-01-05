@@ -21,7 +21,13 @@ public class AuthorList {
 	}
 	
 	public String[] find(String author){
-		String[] list = new String[authorlist.size() - 1];
+		int count = 0;
+		for (String current : authorlist) {
+			if (current.contains(author)) {
+				count ++;
+			}
+		}
+		String[] list = new String[count];
 		int i = 0;
 		for (String current : authorlist) {
 			if (current.contains(author)) {

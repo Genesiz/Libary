@@ -21,7 +21,13 @@ public class GenreList {
 	}
 	
 	public String[] find(String genre){
-		String[] list = new String[genrelist.size() - 1];
+		int count = 0;
+		for (String current : genrelist) {
+			if (current.contains(genre)) {
+				count ++;
+			}
+		}
+		String[] list = new String[count];
 		int i = 0;
 		for (String current : genrelist) {
 			if (current.contains(genre)) {

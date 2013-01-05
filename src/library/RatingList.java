@@ -21,7 +21,13 @@ public class RatingList {
 	}
 	
 	public String[] find(String rating){
-		String[] list = new String[ratinglist.size() - 1];
+		int count = 0;
+		for (String current : ratinglist) {
+			if (current.contains(rating)) {
+				count ++;
+			}
+		}
+		String[] list = new String[count];
 		int i = 0;
 		for (String current : ratinglist) {
 			if (current.contains(rating)) {

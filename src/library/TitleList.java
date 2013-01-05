@@ -21,7 +21,13 @@ public class TitleList {
 	}
 	
 	public String[] find(String title){
-		String[] list = new String[titleList.size() - 1];
+		int count = 0;
+		for (String current : titleList) {
+			if (current.contains(title)) {
+				count ++;
+			}
+		}
+		String[] list = new String[count];
 		int i = 0;
 		for (String current : titleList) {
 			if (current.contains(title)) {
