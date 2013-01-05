@@ -3,6 +3,7 @@ package library;
 import items.Items;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 public class Archieve {
 	
@@ -25,6 +26,7 @@ public class Archieve {
 	public void addItem(Items item) {
 		this.archieve.add(item);
 		this.titleList.addTitle(item.GetTitle());
+
 	}
 	
 	public ArrayList<Items> getLibrary() {

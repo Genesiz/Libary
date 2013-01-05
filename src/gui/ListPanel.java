@@ -13,19 +13,23 @@ import library.TitleList;
  */
 public class ListPanel extends JPanel {
 	
-	private DefaultListModel<String> list;
-
+	private DefaultListModel<String> listModel;
+	private JList list;
+	
 	public ListPanel() {
-		 DefaultListModel<String> listModel = new DefaultListModel<String>();
+		 listModel = new DefaultListModel<String>();
 		 TitleList testList = Archieve.library.getTitles();
 		 for (String test : testList.getTitles() ) {
 			 listModel.addElement(test);
 		 }
-		 JList list = new JList();
+		 list = new JList();
 		 list.setModel(listModel);
 		 this.add(list);
-		 
-		
+	}
+	
+	public void addToPanel(String item) {
+		listModel.addElement(item);
+		list.setModel(listModel);
 	}
 
 }

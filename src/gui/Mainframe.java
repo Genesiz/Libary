@@ -4,10 +4,10 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
-
-import library.Archieve;
 
 public class Mainframe extends JFrame {
 	
@@ -42,14 +42,7 @@ public class Mainframe extends JFrame {
 		 jcbLength.addActionListener(new CheckLengthListener());
 		 jcbRating.addActionListener(new CheckRatingListener());
 		 		 	
-		 jbtNew.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new NewItemDialog();
-			}
-			 
-		 });
+		 jbtNew.addActionListener(new NewButtonListener());
 		 p1.add(jbtNew);
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
@@ -61,7 +54,7 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbRating);
 		 
 		 
-			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		 setLayout(new BorderLayout());
 	
@@ -71,6 +64,15 @@ public class Mainframe extends JFrame {
 		 this.add(p3, BorderLayout.SOUTH);
 		 
 		}
+	
+	
+		class NewButtonListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new NewItemDialog();
+			}		 
+		 }
 		
 	
 		class CheckTitleListener implements ActionListener {
