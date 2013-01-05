@@ -6,16 +6,15 @@ import items.IllegalItemException;
 import library.Archieve;
 
 
-/**
- * @author Hjalte S. Jorgensen
- * @version 1.00
- */
 public class Test {
 
 	
+
 	public static void main(String[] args) {
 		Archieve local = Archieve.library;
 		try {
+			local.addItem(new Books("title3", "author", 
+					300, "genre", 4, "BOOK"));
 			local.addItem(new Books("Lorte Sang", "Bjarne", 
 					2.42, "Classic", 1, "MUSIC"));
 			local.addItem(new Books("God bog", "Mr. Awesome", 
@@ -32,6 +31,10 @@ public class Test {
 		
 		JFrame frame = new Mainframe();
 		frame.pack();
+
+		//frame.setDefaultCloseOperation(0);
+		//frame.setSize(500,500);
+
 		frame.setVisible(true);
 		
 		
