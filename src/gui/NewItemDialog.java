@@ -28,12 +28,12 @@ public class NewItemDialog extends JDialog {
 		this.setLayout(new BorderLayout());
 		
 		
-		JLabel jlTitle = new JLabel("Title :");
-		JLabel jlAuthor = new JLabel("Author :");
-		JLabel jlRating = new JLabel("Rating (0 - 5) :");
-		JLabel jlLength = new JLabel("Length :");
-		JLabel jlType = new JLabel("Type :");
-		JLabel jlGenre = new JLabel("Genre :");
+		JLabel jlTitle = new JLabel("Title:");
+		JLabel jlAuthor = new JLabel("Author:");
+		JLabel jlRating = new JLabel("Rating (0 - 5):");
+		JLabel jlLength = new JLabel("Length:");
+		JLabel jlType = new JLabel("Type:");
+		JLabel jlGenre = new JLabel("Genre:");
 		
 	     jtfTitle = new JTextField();
 		 jtfAuthor = new JTextField();

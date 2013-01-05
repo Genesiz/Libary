@@ -1,6 +1,11 @@
 package gui;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+
+import library.Archieve;
+import library.TitleList;
 
 /**
  * @author Hjalte S. Jorgensen
@@ -8,7 +13,18 @@ import javax.swing.JPanel;
  */
 public class ListPanel extends JPanel {
 	
+	private DefaultListModel<String> list;
+
 	public ListPanel() {
+		 DefaultListModel<String> listModel = new DefaultListModel<String>();
+		 TitleList testList = Archieve.library.getTitles();
+		 for (String test : testList.getTitles() ) {
+			 listModel.addElement(test);
+		 }
+		 JList list = new JList();
+		 list.setModel(listModel);
+		 this.add(list);
+		 
 		
 	}
 

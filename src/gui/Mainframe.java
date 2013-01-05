@@ -24,8 +24,13 @@ import library.Archieve;
 
 public class Mainframe extends JFrame {
 	
+	private JCheckBox jcbTitle;
+	private JCheckBox jcbAuthor;
+	private JCheckBox jcbGenre;
+	private JCheckBox jcbLength;
+	private JCheckBox jcbRating;
 	
-	
+
 	public Mainframe(){
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
@@ -38,14 +43,11 @@ public class Mainframe extends JFrame {
 		 JButton jbtNew = new JButton("Add new");
 		 JLabel jlSearch = new JLabel("Search:");
 		 JTextField jtfSearch = new JTextField(10);
-		 JCheckBox jcbTitle = new JCheckBox("Title");
-		 JCheckBox jcbAuthor = new JCheckBox("Author");
-		 JCheckBox jcbGenre = new JCheckBox("Genre");
-		 JCheckBox jcbLength = new JCheckBox("Length");
-		 JCheckBox jcbRating = new JCheckBox("Rating");
-		 
-		 JList list = new JList();
-
+		 jcbTitle = new JCheckBox("Title");
+		 jcbAuthor = new JCheckBox("Author");
+		 jcbGenre = new JCheckBox("Genre");
+		 jcbLength = new JCheckBox("Length");
+		 jcbRating = new JCheckBox("Rating");
 		 		 
 		 jbtNew.addActionListener(new ActionListener() {
 
@@ -66,9 +68,7 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbRating);
 		 
 		 
-		 p3.add(list);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-			this.setLocationRelativeTo(null);
 
 		 setLayout(new BorderLayout());
 	
@@ -76,7 +76,106 @@ public class Mainframe extends JFrame {
 		 this.add(p2);
 		 
 		 this.add(p3, BorderLayout.SOUTH);
+		 
+		}
+		
+	
+		class CheckTitleListener implements ActionListener {
 
-	}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbTitle.isSelected()) {
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}
+			}
+		}
 
+		class CheckAuthorListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbAuthor.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckGenreListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbGenre.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckLengthListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbLength.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckRatingListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbRating.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbLength.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+				}	
+			}
+			
+		}
 }
