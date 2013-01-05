@@ -35,6 +35,8 @@ public class Test {
 		
 		JFrame frame = new Mainframe();
 		frame.pack();
+		//frame.setDefaultCloseOperation(0);
+		//frame.setSize(500,500);
 		frame.setVisible(true);
 		
 		
