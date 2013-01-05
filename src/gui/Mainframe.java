@@ -43,9 +43,6 @@ public class Mainframe extends JFrame {
 		 JCheckBox jcbGenre = new JCheckBox("Genre");
 		 JCheckBox jcbLength = new JCheckBox("Length");
 		 JCheckBox jcbRating = new JCheckBox("Rating");
-		 
-		 JList list = new JList();
-
 		 		 
 		 jbtNew.addActionListener(new ActionListener() {
 
@@ -66,7 +63,6 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbRating);
 		 
 		 
-		 p3.add(list);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setLocationRelativeTo(null);
 
