@@ -78,13 +78,38 @@ public class NewItemDialog extends JDialog {
 	}
 	class AddButtonListener implements ActionListener{
 
+		private String title;
+		private String author;
+		private String genre;
+		private int rating;
+		private double length;
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String title = jtfTitle.getText();
-			String author = jtfAuthor.getText();
-			Double length = Double.valueOf(jtfLength.getText());
-			int rating = Integer.valueOf(jtfRating.getText());
-			String genre = jtfGenre.getText();
+			if(jtfTitle.getText().isEmpty()){
+				 title = "Unknown";
+			}
+			else title = jtfTitle.getText();
+			
+			if(jtfAuthor.getText().isEmpty()){
+				author = "Unknown";
+			}
+			else author = jtfAuthor.getText();
+			
+			if(jtfRating.getText().isEmpty()){
+				rating = 0;
+			}
+			else rating = Integer.valueOf(jtfRating.getText());
+			
+			if(jtfLength.getText().isEmpty()){
+				length = 0.0;
+			}
+			else length = Double.valueOf(jtfLength.getText());
+			
+			if(jtfGenre.getText().isEmpty()){
+				genre = "Unknown";
+			}
+			else genre = jtfGenre.getText();
 			
 			try{
 			if (jcbType.getSelectedItem() == "Music") {
