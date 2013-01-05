@@ -7,9 +7,6 @@ import library.Archieve;
 
 
 public class Test {
-
-	
-
 	public static void main(String[] args) {
 		Archieve local = Archieve.library;
 		try {
@@ -41,8 +38,7 @@ public class Test {
 		//frame.setSize(500,500);
 
 		frame.setVisible(true);
-		
-		
+	
 	}
 	
 
