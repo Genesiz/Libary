@@ -27,6 +27,11 @@ public class Test {
 		}
 		
 		local.printLibrary();
+		String[] test = local.getTitles().find("bog");
+		for (String test00 : test) {
+			System.out.println(test00);
+		}
+		
 		
 		
 		JFrame frame = new Mainframe();
