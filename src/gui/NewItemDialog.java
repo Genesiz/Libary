@@ -92,7 +92,7 @@ public class NewItemDialog extends JDialog {
 			else title = jtfTitle.getText();
 			
 			if(jtfAuthor.getText().isEmpty()){
-				author = "Unknown";
+				author = "Unknown"; 
 			}
 			else author = jtfAuthor.getText();
 			
