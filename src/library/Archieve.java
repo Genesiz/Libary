@@ -26,7 +26,7 @@ public class Archieve {
 		for (Items item : this.getLibrary() ) {
 			System.out.println(
 					String.format("Title: %s, Author: %s, Genre: %s Rating: %d",
-							item.GetTitle(), item.GetAuthor(), item.GetRating()));
+							item.GetTitle(), item.GetAuthor(), item.GetGenre(), item.GetRating()));
 		}
 	}
 
