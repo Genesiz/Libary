@@ -6,6 +6,8 @@ import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -45,7 +47,14 @@ public class Mainframe extends JFrame {
 		 JList list = new JList();
 
 		 		 
-		 
+		 jbtNew.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new NewItemDialog(this, true);
+			}
+			 
+		 });
 		 p1.add(jbtNew);
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
