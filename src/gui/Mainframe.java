@@ -69,7 +69,6 @@ public class Mainframe extends JFrame {
 		 
 		 
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-			this.setLocationRelativeTo(null);
 
 		 setLayout(new BorderLayout());
 	
@@ -78,21 +77,105 @@ public class Mainframe extends JFrame {
 		 
 		 this.add(p3, BorderLayout.SOUTH);
 		 
-		 jcbTitle.addActionListener(new ActionListener() {
+		}
+		
+	
+		class CheckTitleListener implements ActionListener {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if (jcbTitle.isSelected()) {
 					jcbAuthor.setEnabled(false);
 					jcbGenre.setEnabled(false);
-					jcb
-					
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
 				}
-				
+				else {
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}
 			}
-			 
-		 });
+		}
 
-	}
+		class CheckAuthorListener implements ActionListener {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbAuthor.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckGenreListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbGenre.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbLength.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbLength.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckLengthListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbLength.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbRating.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbRating.setEnabled(true);
+				}	
+			}
+			
+		}
+		
+		class CheckRatingListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (jcbRating.isSelected()) {
+					jcbTitle.setEnabled(false);
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcbLength.setEnabled(false);
+				}
+				else {
+					jcbTitle.setEnabled(true);
+					jcbAuthor.setEnabled(true);
+					jcbGenre.setEnabled(true);
+					jcbLength.setEnabled(true);
+				}	
+			}
+			
+		}
 }
