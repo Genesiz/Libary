@@ -4,7 +4,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import library.Archieve;
+import library.Archive;
 import library.TitleList;
 
 /**
@@ -17,7 +17,7 @@ public class ListPanel extends JPanel {
 
 	public ListPanel() {
 		 DefaultListModel<String> listModel = new DefaultListModel<String>();
-		 TitleList testList = Archieve.library.getTitles();
+		 TitleList testList = Archive.library.getTitles();
 		 for (String test : testList.getTitles() ) {
 			 listModel.addElement(test);
 		 }

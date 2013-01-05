@@ -4,7 +4,7 @@ import items.Items;
 
 import java.util.ArrayList;
 
-public class Archieve {
+public class Archive {
 	
 	private ArrayList<Items> archieve;
 	private TitleList titleList;
@@ -12,9 +12,9 @@ public class Archieve {
 	private AuthorList authorList;
 	private RatingList ratingList;
 	
-	public static Archieve library = new Archieve();
+	public static Archive library = new Archive();
 	
-	private Archieve() {	
+	private Archive() {	
 		this.archieve = new ArrayList<Items>();
 		this.titleList = new TitleList();
 		this.genreList = new GenreList();
@@ -25,6 +25,9 @@ public class Archieve {
 	public void addItem(Items item) {
 		this.archieve.add(item);
 		this.titleList.addTitle(item.GetTitle());
+		this.authorList.addAuthor(item.GetAuthor());
+		this.genreList.addGenre(item.GetGenre());
+		this.ratingList.addRating(item.GetRating());
 	}
 	
 	public ArrayList<Items> getLibrary() {

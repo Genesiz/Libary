@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import library.Archieve;
+import library.Archive;
 
 public class Mainframe extends JFrame {
 	
@@ -38,14 +38,14 @@ public class Mainframe extends JFrame {
 		 jcbTitle = new JCheckBox("Title");
 		 jcbAuthor = new JCheckBox("Author");
 		 jcbGenre = new JCheckBox("Genre");
-		 jcbLength = new JCheckBox("Length");
+//		 jcbLength = new JCheckBox("Length");
 		 jcbRating = new JCheckBox("Rating");
 		 
 		 jtfSearch.addActionListener(new SearchListener());
 		 jcbTitle.addActionListener(new CheckTitleListener());
 		 jcbAuthor.addActionListener(new CheckAuthorListener());
 		 jcbGenre.addActionListener(new CheckGenreListener());
-		 jcbLength.addActionListener(new CheckLengthListener());
+//		 jcbLength.addActionListener(new CheckLengthListener());
 		 jcbRating.addActionListener(new CheckRatingListener());
 		 		 	
 		 jbtNew.addActionListener(new ActionListener() {
@@ -63,7 +63,7 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbTitle);
 		 p2.add(jcbAuthor);
 		 p2.add(jcbGenre);
-		 p2.add(jcbLength);
+//		 p2.add(jcbLength);
 		 p2.add(jcbRating);
 		 
 		 
@@ -74,7 +74,7 @@ public class Mainframe extends JFrame {
 		 this.add(p1, BorderLayout.NORTH);
 		 this.add(p2);
 		 
-		 this.add(p3, BorderLayout.SOUTH);
+//		 this.add(p3, BorderLayout.SOUTH);
 		 
 		}
 		
@@ -145,27 +145,25 @@ public class Mainframe extends JFrame {
 			
 		}
 		
-		class CheckLengthListener implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (jcbLength.isSelected()) {
-					jcbTitle.setEnabled(false);
-					jcbAuthor.setEnabled(false);
-					jcbGenre.setEnabled(false);
-					jcbRating.setEnabled(false);
-					i = 4;
-				}
-				else {
-					jcbTitle.setEnabled(true);
-					jcbAuthor.setEnabled(true);
-					jcbGenre.setEnabled(true);
-					jcbRating.setEnabled(true);
-					i = 0;
-				}	
-			}
-			
-		}
+//		class CheckLengthListener implements ActionListener {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (jcbLength.isSelected()) {
+//					jcbTitle.setEnabled(false);
+//					jcbAuthor.setEnabled(false);
+//					jcbGenre.setEnabled(false);
+//					jcbRating.setEnabled(false);
+//				}
+//				else {
+//					jcbTitle.setEnabled(true);
+//					jcbAuthor.setEnabled(true);
+//					jcbGenre.setEnabled(true);
+//					jcbRating.setEnabled(true);
+//				}	
+//			}
+//			
+//		}
 		
 		class CheckRatingListener implements ActionListener {
 
@@ -176,7 +174,7 @@ public class Mainframe extends JFrame {
 					jcbAuthor.setEnabled(false);
 					jcbGenre.setEnabled(false);
 					jcbLength.setEnabled(false);
-					i = 5;
+					i = 4;
 				}
 				else {
 					jcbTitle.setEnabled(true);
@@ -194,14 +192,32 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch (i) {
-				case 0 : System.out.println("YOLO");
 				case 1 : {
-				String[] list = Archieve.library.getTitles().find(jtfSearch.getText());
-				for (String current : list)
+				String[] list = Archive.library.getTitles().find(jtfSearch.getText());
+				for (String current : list) {
 					System.out.println(current);
 				}
 				}
+				case 2 : {
+				String[] list = Archive.library.getAuthors().find(jtfSearch.getText());
+				for (String current : list) {
+					System.out.println(current);
+					}
+				}
 				
+				case 3 : {
+				String[] list = Archive.library.getGenre().find(jtfSearch.getText());
+				for (String current : list)
+					System.out.println(current);
+				}
+
+				case 5 : {
+				Integer[] list = Archive.library.getRatings().find(Integer.valueOf(jtfSearch.getText()));
+				for (int current : list)
+					System.out.println(current);
+				}
+				default : System.out.println("YOLO"); break;
+				}
 				
 			}
 			

@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import library.Archieve;
+import library.Archive;
 
-public class NewItemDialog extends JDialog {
+public class NewItemDialog extends JDialog implements ActionListener {
 	
 	JTextField jtfTitle;
 	JTextField jtfAuthor;
@@ -50,7 +50,9 @@ public class NewItemDialog extends JDialog {
 		
 		JPanel p2 = new JPanel();
 		JButton jbAdd = new JButton("Add");
+		JButton jbClose = new JButton("Close");
 		jbAdd.addActionListener(new AddButtonListener());
+		jbClose.addActionListener(this);
 		
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
@@ -66,7 +68,7 @@ public class NewItemDialog extends JDialog {
 		p1.add(jcbType);
 		
 		p2.add(jbAdd);
-		
+		p2.add(jbClose);
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
 		
@@ -97,6 +99,7 @@ public class NewItemDialog extends JDialog {
 			}
 			else author = jtfAuthor.getText();
 			
+			try  {
 			if(jtfRating.getText().isEmpty()){
 				rating = 0;
 			}
@@ -107,6 +110,10 @@ public class NewItemDialog extends JDialog {
 			}
 			else length = Double.valueOf(jtfLength.getText());
 			
+			} catch (NumberFormatException e) {
+				System.err.print("Input must be a number");
+			}
+			
 			if(jtfGenre.getText().isEmpty()){
 				genre = "Unknown";
 			}
@@ -114,9 +121,9 @@ public class NewItemDialog extends JDialog {
 			
 			try{
 			if (jcbType.getSelectedItem() == "Music") {
-			Archieve.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
+			Archive.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
 			}
-			else Archieve.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
+			else Archive.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
 			} catch (IllegalItemException e) {
 				
 			}
@@ -126,9 +133,14 @@ public class NewItemDialog extends JDialog {
 			jtfGenre.setText("");
 			jtfLength.setText("");
 			jtfRating.setText("");
+			
 		}
 		
 	}
-
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.dispose();
+		
+	}
+	
 }

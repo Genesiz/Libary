@@ -8,29 +8,29 @@ import java.util.ArrayList;
 public class RatingList {
 	
 	
-	private ArrayList<String> ratinglist;
+	private ArrayList<Integer> ratinglist;
 	
 	public RatingList(){
-		this.ratinglist = new ArrayList<String>();
+		this.ratinglist = new ArrayList<Integer>();
 	}
-	public void addRating(String rating){
-		this.ratinglist.add(rating);
+	public void addRating(int i){
+		this.ratinglist.add(i);
 	}
-	public ArrayList<String> getRatings(){
+	public ArrayList<Integer> getRatings(){
 		return this.ratinglist;
 	}
 	
-	public String[] find(String rating){
+	public Integer[] find(Integer rating){
 		int count = 0;
-		for (String current : ratinglist) {
-			if (current.contains(rating)) {
+		for (Integer current : ratinglist) {
+			if (current == rating) {
 				count ++;
 			}
 		}
-		String[] list = new String[count];
+		Integer[] list = new Integer[count];
 		int i = 0;
-		for (String current : ratinglist) {
-			if (current.contains(rating)) {
+		for (Integer current : ratinglist) {
+			if (current == rating) {
 				list[i] = current;
 				i++;
 			}
