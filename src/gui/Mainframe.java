@@ -67,7 +67,9 @@ public class Mainframe extends JFrame {
 		 
 		 
 		 p3.add(list);
-		 
+			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			this.setLocationRelativeTo(null);
+
 		 setLayout(new BorderLayout());
 	
 		 this.add(p1, BorderLayout.NORTH);
