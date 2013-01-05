@@ -1,3 +1,6 @@
+import javax.swing.JFrame;
+
+import gui.Mainframe;
 import items.Books;
 import items.IllegalItemException;
 import library.Archieve;
@@ -26,6 +29,10 @@ public class Test {
 		
 		local.printLibrary();
 		
+		
+		JFrame frame = new Mainframe();
+		frame.pack();
+		frame.setVisible(true);
 		
 		
 	}
