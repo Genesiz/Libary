@@ -1,6 +1,7 @@
 package gui;
 
 import items.Books;
+import items.IllegalItemException;
 import items.Music;
 
 import java.awt.BorderLayout;
@@ -79,13 +80,20 @@ public class NewItemDialog extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String title = jtfTitle.getText()
-			String
+			String title = jtfTitle.getText();
+			String author = jtfAuthor.getText();
+			Double length = Double.valueOf(jtfLength.getText());
+			int rating = Integer.valueOf(jtfRating.getText());
+			String genre = jtfGenre.getText();
 			
+			try{
 			if (jcbType.getSelectedItem() == "Music") {
-			Archieve.library.addItem(new Music(jtfTitle.getText(), jtfAuthor.getText(), Double.valueOf(jtfLength.getText()));
+			Archieve.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
 			}
-			else Archieve.library.addItem(new Books());
+			else Archieve.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
+			} catch (IllegalItemException e) {
+				
+			}
 		}
 		
 	}
