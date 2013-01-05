@@ -35,7 +35,13 @@ public class Mainframe extends JFrame {
 		 jcbGenre = new JCheckBox("Genre");
 		 jcbLength = new JCheckBox("Length");
 		 jcbRating = new JCheckBox("Rating");
-		 		 		 
+		 
+		 jcbTitle.addActionListener(new CheckTitleListener());
+		 jcbAuthor.addActionListener(new CheckAuthorListener());
+		 jcbGenre.addActionListener(new CheckGenreListener());
+		 jcbLength.addActionListener(new CheckLengthListener());
+		 jcbRating.addActionListener(new CheckRatingListener());
+		 		 	
 		 jbtNew.addActionListener(new ActionListener() {
 
 			@Override
