@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class NewItemDialog extends JDialog {
 	
-	public NewItemDialog(JFrame frame, boolean moda) {
-		super(frame, moda); 
+	public NewItemDialog() {
+		//super(frame, moda); 
 		this.setTitle("Add new item to library");
 		this.setLayout(new GridLayout(6,2));
 		
@@ -23,11 +23,29 @@ public class NewItemDialog extends JDialog {
 		JTextField jtfGenre = new JTextField();
 		JTextField jtfRating = new JTextField();
 		JTextField jtfLength = new JTextField();
-		JComboBox jcbType = new JComboBox();
+		JComboBox<String> jcbType = new JComboBox<String>();
+		jcbType.addItem("Book");
+		jcbType.addItem("Music");
+		
 		
 		this.add(jlTitle);
 		this.add(jtfTitle);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.add(jlAuthor);
+		this.add(jtfAuthor);
+		this.add(jlGenre);
+		this.add(jtfGenre);
+		this.add(jlLength);
+		this.add(jtfLength);
+		this.add(jlRating);
+		this.add(jtfRating);
+		this.add(jlType);
+		this.add(jcbType);
+		
+		
+		
+		this.pack();
+		this.setResizable(false);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		
 		

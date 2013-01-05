@@ -51,7 +51,7 @@ public class Mainframe extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new NewItemDialog(this, true);
+				new NewItemDialog();
 			}
 			 
 		 });
@@ -67,7 +67,8 @@ public class Mainframe extends JFrame {
 		 
 		 
 		 p3.add(list);
-		 
+			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		 setLayout(new BorderLayout());
 	
 		 this.add(p1, BorderLayout.NORTH);
