@@ -51,7 +51,7 @@ public class Mainframe extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new NewItemDialog(this, true);
+				new NewItemDialog();
 			}
 			 
 		 });
