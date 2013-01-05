@@ -65,21 +65,15 @@ public class NewItemDialog extends JDialog {
 		
 		p2.add(jbAdd);
 		
-		
-		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
-		
 		
 		this.pack();
 		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
-		
-		
-				
+			
 	}
 	class AddButtonListener implements ActionListener{
 
