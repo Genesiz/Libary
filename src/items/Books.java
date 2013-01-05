@@ -8,8 +8,13 @@ public class Books extends Items {
 	
 
 	public Books(String title, String author, double length, 
-			String genre, int rating, String type) {
+			String genre, int rating, String type) throws IllegalItemException {
 		
+		if (rating <= 5 && rating >= 0)
+			this.rating = rating;
+		else 
+			throw new IllegalItemException("rating most be between 0 and 5.");
+
 		this.author = author;
 		this.genre = genre;
 		this.length = length;
