@@ -9,19 +9,28 @@ public class Music extends Items {
 	private int rating;
 	private String type;
 	
-	public Music(String title, String author, double length, String genre,int rating, String type){
-		this.title = title;
-		this.author = author;
-		this.length = length;
-		this.genre = genre;
+	public Music(String title, String author, double length, String genre,int rating, String type) throws IllegalItemException{
+		
+		if  (rating  < 5 && rating > 0)
 		this.rating = rating;
+		else throw new IllegalItemException("Rating must be between 0 and 5");
+		
+		this.title = title;
+		
+		this.author = author;
+		
+		this.length = length;
+		
+		this.genre = genre;
+	
 		this.type = type;
+		
 		
 	}
 
 	@Override
 	public String GetTitle() {
-	return title;
+		return title;
 	}
 
 	@Override
@@ -31,7 +40,6 @@ public class Music extends Items {
 
 	@Override
 	public double GetLength() {
-	
 		return length;
 	}
 
