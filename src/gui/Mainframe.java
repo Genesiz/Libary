@@ -1,5 +1,9 @@
 package gui;
 
+import library.TitleList;
+import library.AuthorList;
+import library.GenreList;
+import library.RatingList;
 
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
@@ -31,6 +35,7 @@ public class Mainframe extends JFrame {
 	private JCheckBox jcbGenre;
 	private JCheckBox jcbLength;
 	private JCheckBox jcbRating;
+	private JTextField jtfSearch;
 	
 
 	public Mainframe(){
@@ -44,13 +49,14 @@ public class Mainframe extends JFrame {
 		 
 		 JButton jbtNew = new JButton("Add new");
 		 JLabel jlSearch = new JLabel("Search:");
-		 JTextField jtfSearch = new JTextField(10);
+		 jtfSearch = new JTextField(10);
 		 jcbTitle = new JCheckBox("Title");
 		 jcbAuthor = new JCheckBox("Author");
 		 jcbGenre = new JCheckBox("Genre");
 		 jcbLength = new JCheckBox("Length");
 		 jcbRating = new JCheckBox("Rating");
 		 
+		 jtfSearch.addActionListener(new SearchListener());
 		 jcbTitle.addActionListener(new CheckTitleListener());
 		 jcbAuthor.addActionListener(new CheckAuthorListener());
 		 jcbGenre.addActionListener(new CheckGenreListener());
@@ -91,6 +97,7 @@ public class Mainframe extends JFrame {
 		 
 		}
 		
+		int i;
 	
 		class CheckTitleListener implements ActionListener {
 
@@ -101,12 +108,14 @@ public class Mainframe extends JFrame {
 					jcbGenre.setEnabled(false);
 					jcbLength.setEnabled(false);
 					jcbRating.setEnabled(false);
+					i = 1;
 				}
 				else {
 					jcbAuthor.setEnabled(true);
 					jcbGenre.setEnabled(true);
 					jcbLength.setEnabled(true);
 					jcbRating.setEnabled(true);
+					i = 0;
 				}
 			}
 		}
@@ -120,12 +129,14 @@ public class Mainframe extends JFrame {
 					jcbGenre.setEnabled(false);
 					jcbLength.setEnabled(false);
 					jcbRating.setEnabled(false);
+					i = 2;
 				}
 				else {
 					jcbTitle.setEnabled(true);
 					jcbGenre.setEnabled(true);
 					jcbLength.setEnabled(true);
 					jcbRating.setEnabled(true);
+					i = 0;
 				}	
 			}
 			
@@ -140,12 +151,14 @@ public class Mainframe extends JFrame {
 					jcbAuthor.setEnabled(false);
 					jcbLength.setEnabled(false);
 					jcbRating.setEnabled(false);
+					i = 3;
 				}
 				else {
 					jcbTitle.setEnabled(true);
 					jcbAuthor.setEnabled(true);
 					jcbLength.setEnabled(true);
 					jcbRating.setEnabled(true);
+					i = 0;
 				}	
 			}
 			
@@ -160,12 +173,14 @@ public class Mainframe extends JFrame {
 					jcbAuthor.setEnabled(false);
 					jcbGenre.setEnabled(false);
 					jcbRating.setEnabled(false);
+					i = 4;
 				}
 				else {
 					jcbTitle.setEnabled(true);
 					jcbAuthor.setEnabled(true);
 					jcbGenre.setEnabled(true);
 					jcbRating.setEnabled(true);
+					i = 0;
 				}	
 			}
 			
@@ -180,13 +195,33 @@ public class Mainframe extends JFrame {
 					jcbAuthor.setEnabled(false);
 					jcbGenre.setEnabled(false);
 					jcbLength.setEnabled(false);
+					i = 5;
 				}
 				else {
 					jcbTitle.setEnabled(true);
 					jcbAuthor.setEnabled(true);
 					jcbGenre.setEnabled(true);
 					jcbLength.setEnabled(true);
+					i = 0;
 				}	
+			}
+			
+		}
+		
+		class SearchListener implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch (i) {
+				case 0 : System.out.println("YOLO");
+				case 1 : {
+				String[] list = Archieve.library.getTitles().find(jtfSearch.getText());
+				for (String current : list)
+					System.out.println(current);
+				}
+				}
+				
+				
 			}
 			
 		}

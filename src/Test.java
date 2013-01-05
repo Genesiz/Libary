@@ -23,11 +23,11 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		local.printLibrary();
-		String[] test = local.getTitles().find("bog");
-		for (String test00 : test) {
-			System.out.println(test00);
-		}
+//		local.printLibrary();
+//		String[] test = local.getTitles().find("bOg");
+//		for (String test00 : test) {
+//			System.out.println(test00);
+//		}
 		
 		
 		

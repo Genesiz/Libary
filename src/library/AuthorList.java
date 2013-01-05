@@ -23,14 +23,14 @@ public class AuthorList {
 	public String[] find(String author){
 		int count = 0;
 		for (String current : authorlist) {
-			if (current.contains(author)) {
+			if (current.toLowerCase().contains(author.toLowerCase())) {
 				count ++;
 			}
 		}
 		String[] list = new String[count];
 		int i = 0;
 		for (String current : authorlist) {
-			if (current.contains(author)) {
+			if (current.toLowerCase().contains(author.toLowerCase())) {
 				list[i] = current;
 				i++;
 			}

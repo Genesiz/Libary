@@ -94,6 +94,12 @@ public class NewItemDialog extends JDialog {
 			} catch (IllegalItemException e) {
 				
 			}
+			
+			jtfTitle.setText("");
+			jtfAuthor.setText("");
+			jtfGenre.setText("");
+			jtfLength.setText("");
+			jtfRating.setText("");
 		}
 		
 	}
