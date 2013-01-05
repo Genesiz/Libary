@@ -26,6 +26,13 @@ public class Mainframe extends JFrame {
 	
 	
 	
+	private JCheckBox jcbTitle;
+	private JCheckBox jcbAuthor;
+	private JCheckBox jcbGenre;
+	private JCheckBox jcbLength;
+	private JCheckBox jcbRating;
+	
+
 	public Mainframe(){
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
@@ -38,11 +45,11 @@ public class Mainframe extends JFrame {
 		 JButton jbtNew = new JButton("Add new");
 		 JLabel jlSearch = new JLabel("Search:");
 		 JTextField jtfSearch = new JTextField(10);
-		 JCheckBox jcbTitle = new JCheckBox("Title");
-		 JCheckBox jcbAuthor = new JCheckBox("Author");
-		 JCheckBox jcbGenre = new JCheckBox("Genre");
-		 JCheckBox jcbLength = new JCheckBox("Length");
-		 JCheckBox jcbRating = new JCheckBox("Rating");
+		 jcbTitle = new JCheckBox("Title");
+		 jcbAuthor = new JCheckBox("Author");
+		 jcbGenre = new JCheckBox("Genre");
+		 jcbLength = new JCheckBox("Length");
+		 jcbRating = new JCheckBox("Rating");
 		 
 		 JList list = new JList();
 
@@ -75,6 +82,21 @@ public class Mainframe extends JFrame {
 		 this.add(p2);
 		 
 		 this.add(p3, BorderLayout.SOUTH);
+		 
+		 jcbTitle.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (jcbTitle.isSelected()) {
+					jcbAuthor.setEnabled(false);
+					jcbGenre.setEnabled(false);
+					jcb
+					
+				}
+				
+			}
+			 
+		 });
 
 	}
 
