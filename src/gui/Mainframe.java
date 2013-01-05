@@ -5,30 +5,15 @@ import library.AuthorList;
 import library.GenreList;
 import library.RatingList;
 
-import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
+import javax.swing.*;
 
 import library.Archieve;
 
 public class Mainframe extends JFrame {
-	
-	
 	
 	private JCheckBox jcbTitle;
 	private JCheckBox jcbAuthor;
@@ -62,10 +47,7 @@ public class Mainframe extends JFrame {
 		 jcbGenre.addActionListener(new CheckGenreListener());
 		 jcbLength.addActionListener(new CheckLengthListener());
 		 jcbRating.addActionListener(new CheckRatingListener());
-		 
-		 JList list = new JList();
-		 	
-		 		 
+		 		 	
 		 jbtNew.addActionListener(new ActionListener() {
 
 			@Override
@@ -85,7 +67,6 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbRating);
 		 
 		 
-		 p3.add(list);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		 setLayout(new BorderLayout());
