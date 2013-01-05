@@ -27,14 +27,14 @@ public class TitleList {
 		int count = 0;
 
 		for (String current : this.getTitles()) {
-			if (current.contains(title)) 
+			if (current.toLowerCase().contains(title.toLowerCase())) 
 				count++;
 		}
 		
 		String[] list = new String[count];
 		int i = 0;
 		for (String current : this.getTitles()) {
-			if (current.contains(title)) {
+			if (current.toLowerCase().contains(title.toLowerCase())) {
 				list[i] = current;
 				i++;
 			}

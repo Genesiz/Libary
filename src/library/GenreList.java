@@ -23,14 +23,14 @@ public class GenreList {
 	public String[] find(String genre){
 		int count = 0;
 		for (String current : genrelist) {
-			if (current.contains(genre)) {
+			if (current.toLowerCase().contains(genre.toLowerCase())) {
 				count ++;
 			}
 		}
 		String[] list = new String[count];
 		int i = 0;
 		for (String current : genrelist) {
-			if (current.contains(genre)) {
+			if (current.toLowerCase().contains(genre.toLowerCase())) {
 				list[i] = current;
 				i++;
 			}

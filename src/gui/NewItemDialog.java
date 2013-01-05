@@ -4,6 +4,7 @@ import items.Books;
 import items.IllegalItemException;
 import items.Music;
 
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,9 +12,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import library.Archieve;
+import library.Archive;
 
-public class NewItemDialog extends JDialog {
+public class NewItemDialog extends JDialog implements ActionListener {
 	
 	JTextField jtfTitle;
 	JTextField jtfAuthor;
@@ -31,7 +32,7 @@ public class NewItemDialog extends JDialog {
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
-		JLabel jlLength = new JLabel("Length:");
+		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
@@ -49,7 +50,9 @@ public class NewItemDialog extends JDialog {
 		
 		JPanel p2 = new JPanel();
 		JButton jbAdd = new JButton("Add");
+		JButton jbClose = new JButton("Close");
 		jbAdd.addActionListener(new AddButtonListener());
+		jbClose.addActionListener(this);
 		
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
@@ -65,7 +68,7 @@ public class NewItemDialog extends JDialog {
 		p1.add(jcbType);
 		
 		p2.add(jbAdd);
-		
+		p2.add(jbClose);
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
 		
@@ -78,25 +81,66 @@ public class NewItemDialog extends JDialog {
 	}
 	class AddButtonListener implements ActionListener{
 
+		private String title;
+		private String author;
+		private String genre;
+		private int rating;
+		private double length;
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String title = jtfTitle.getText();
-			String author = jtfAuthor.getText();
-			Double length = Double.valueOf(jtfLength.getText());
-			int rating = Integer.valueOf(jtfRating.getText());
-			String genre = jtfGenre.getText();
+			if(jtfTitle.getText().isEmpty()){
+				 title = "Unknown";
+			}
+			else title = jtfTitle.getText();
+			
+			if(jtfAuthor.getText().isEmpty()){
+				author = "Unknown"; 
+			}
+			else author = jtfAuthor.getText();
+			
+			try  {
+			if(jtfRating.getText().isEmpty()){
+				rating = 0;
+			}
+			else rating = Integer.valueOf(jtfRating.getText());
+			
+			if(jtfLength.getText().isEmpty()){
+				length = 0.0;
+			}
+			else length = Double.valueOf(jtfLength.getText());
+			
+			} catch (NumberFormatException e) {
+				System.err.print("Input must be a number");
+			}
+			
+			if(jtfGenre.getText().isEmpty()){
+				genre = "Unknown";
+			}
+			else genre = jtfGenre.getText();
 			
 			try{
 			if (jcbType.getSelectedItem() == "Music") {
-			Archieve.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
+			Archive.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
 			}
-			else Archieve.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
+			else Archive.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
 			} catch (IllegalItemException e) {
 				
 			}
+			
+			jtfTitle.setText("");
+			jtfAuthor.setText("");
+			jtfGenre.setText("");
+			jtfLength.setText("");
+			jtfRating.setText("");
+			
 		}
 		
 	}
-
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.dispose();
+		
+	}
+	
 }
