@@ -4,6 +4,7 @@ import items.Books;
 import items.IllegalItemException;
 import items.Music;
 
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ public class NewItemDialog extends JDialog {
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
-		JLabel jlLength = new JLabel("Length:");
+		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
@@ -119,6 +120,7 @@ public class NewItemDialog extends JDialog {
 			} catch (IllegalItemException e) {
 				
 			}
+			
 		}
 		
 	}
