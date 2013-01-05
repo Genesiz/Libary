@@ -29,6 +29,22 @@ public class Archieve {
 							item.GetTitle(), item.GetAuthor(), item.GetGenre(), item.GetRating()));
 		}
 	}
-
-
+	public String GetTitle(){
+	 
+	}
+	public String GetAuthor(){
+		
+	}
+	public String GetGenre(){
+		
+	}
+	public double GetLength(){
+		
+	}
+	public int GetRating(){
+		
+	}
+	public String GetType(){
+		
+	}
 }
