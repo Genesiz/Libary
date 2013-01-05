@@ -8,12 +8,18 @@ public class Archieve {
 	
 	private ArrayList<Items> archieve;
 	private TitleList titleList;
+	private GenreList genreList;
+	private AuthorList authorList;
+	private RatingList ratingList;
 	
 	public static Archieve library = new Archieve();
 	
 	private Archieve() {	
 		this.archieve = new ArrayList<Items>();
 		this.titleList = new TitleList();
+		this.genreList = new GenreList();
+		this.authorList = new AuthorList();
+		this.ratingList = new RatingList();
 	}
 	
 	public void addItem(Items item) {
@@ -27,6 +33,18 @@ public class Archieve {
 	
 	public TitleList getTitles() {
 		return this.titleList;
+	}
+	
+	public GenreList getGenre() {
+		return this.genreList;
+	}
+	
+	public AuthorList getAuthors() {
+		return this.authorList;
+	}
+	
+	public RatingList getRatings() {
+		return this.ratingList;
 	}
 	
 	public void printLibrary() {
