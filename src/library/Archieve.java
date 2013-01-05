@@ -25,8 +25,10 @@ public class Archieve {
 	public void printLibrary() {
 		for (Items item : this.getLibrary() ) {
 			System.out.println(
-					String.format("Title: %s, Author: %s, Genre: %s Rating: %d",
-							item.GetTitle(), item.GetAuthor(), item.GetGenre(), item.GetRating()));
+					String.format("Title: %s, Author: %s, Genre: %s, " +
+							"Length: %f, Rating: %d, Type: %s",
+							item.GetTitle(), item.GetAuthor(), item.GetGenre(),
+							item.GetLength(), item.GetRating(), item.GetType() ));
 		}
 	}
 

@@ -10,13 +10,10 @@ import library.Archieve;
 public class Test {
 
 	
+
 	public static void main(String[] args) {
 		Archieve local = Archieve.library;
 		try {
-			local.addItem(new Books("title", "author", 
-					300, "genre", 4, "BOOK"));
-			local.addItem(new Books("title2", "author", 
-					300, "genre", 4, "BOOK"));
 			local.addItem(new Books("title3", "author", 
 					300, "genre", 4, "BOOK"));
 		} catch (IllegalItemException e) {
