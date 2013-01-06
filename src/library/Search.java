@@ -6,17 +6,19 @@ import java.util.ArrayList;
 
 public class Search {
 	
+	public Search() {	
+	}
+	
 	public enum ItemInfo {
 		TITLE, AUTHOR, GENRE, RATING
 	}
 	
-	public Items[] find(String keyword,ItemInfo info) {
+	public Items[] find(String keyword,ItemInfo itemInfo) {
 		ArrayList<Items> tempArchieve = Archive.library.getLibrary();
 		int count = 0;
 		int i = 0;
 
-		
-		switch (info) {
+		switch (itemInfo) {
 		case TITLE : 	for (Items current : tempArchieve) {
 							String str = current.GetTitle().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
@@ -95,6 +97,45 @@ public class Search {
 		}
 			
 		
+		return null;
+		
+	}
+	
+	public String[] toStringArray(Items[] itemArray, ItemInfo itemInfo) {
+		
+		String[] array = new String[itemArray.length];
+		int i = 0;
+		switch (itemInfo) {
+		case AUTHOR:
+			for (Items current : itemArray) {
+				array[i] = current.GetAuthor();
+				i++;
+			}
+			return array;
+			
+		case GENRE:
+			for (Items current : itemArray) {
+				array[i] = current.GetGenre();
+				i++;
+			}
+			return array;
+		case RATING:
+			for (Items current : itemArray) {
+				array[i] = String.valueOf(current.GetRating());
+				i++;
+			}
+			return array;
+		case TITLE:
+			for (Items current : itemArray) {
+				array[i] = current.GetTitle();
+				i++;
+			}
+			return array;
+		default:
+			System.out.println("Something wrong!");
+			break;
+		
+		}
 		return null;
 		
 	}
