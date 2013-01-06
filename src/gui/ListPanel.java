@@ -25,7 +25,6 @@ public class ListPanel extends JPanel {
 		 list.setModel(listModel);
 		 this.add(list);
 		 
-		
 	}
 
 }

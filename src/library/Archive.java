@@ -1,6 +1,7 @@
 package library;
 
 import items.Items;
+import items.Items.ItemType;
 
 import java.util.ArrayList;
 
@@ -52,11 +53,17 @@ public class Archive {
 	
 	public void printLibrary() {
 		for (Items item : this.getLibrary() ) {
+			if (item.GetType() == ItemType.MUSIC)
 			System.out.printf("Title: %s, Author: %s, Genre: %s, " +
-							"Length: %f, Rating: %d, Type: %s %n",
+							"Length: %.2f, Rating: %d, Type: %s %n",
 							item.GetTitle(), item.GetAuthor(), item.GetGenre(),
-							item.GetLength(), item.GetRating(), item.GetType());
+							item.GetLength(), item.GetRating(), item.GetType()); 
+		
+			else
+				System.out.printf("Title: %s, Author: %s, Genre: %s, " +
+						"Length: %.2f, Rating: %d, Type: %s %n",
+						item.GetTitle(), item.GetAuthor(), item.GetGenre(),
+						item.GetLength(), item.GetRating(), item.GetType());
 		}
 	}
-
 }
