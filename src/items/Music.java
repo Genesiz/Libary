@@ -11,7 +11,7 @@ public class Music extends Items {
 	
 	public Music(String title, String author, double length, String genre,int rating, String type) throws IllegalItemException{
 		
-		if  (rating  < 5 && rating > 0)
+		if  (rating  <= 5 && rating >= 0)
 		this.rating = rating;
 		else throw new IllegalItemException("Rating must be between 0 and 5");
 		
