@@ -2,13 +2,14 @@ package items;
 
 public class Books extends Items {
 	
-	private String title, author, genre, type;
+	private String title, author, genre;
+	private ItemType type;
 	private int rating;
 	private double length;
 	
 
 	public Books(String title, String author, double length, 
-			String genre, int rating, String type) throws IllegalItemException {
+			String genre, int rating, ItemType type) throws IllegalItemException {
 		
 		if (rating <= 5 && rating >= 0)
 			this.rating = rating;
@@ -67,7 +68,7 @@ public class Books extends Items {
 	 * @see items.Items#GetType()
 	 */
 	@Override
-	public String GetType() {
+	public ItemType GetType() {
 		// TODO Auto-generated method stub
 		return this.type;
 	}

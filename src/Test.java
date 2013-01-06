@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import gui.Mainframe;
 import items.Books;
 import items.IllegalItemException;
+import items.Items.ItemType;
 import library.Archive;
 import library.AuthorList;
 
@@ -14,13 +15,13 @@ public class Test {
 		Archive local = Archive.library;
 		try {
 			local.addItem(new Books("50 shades of grey", "Joe", 
-					300, "Porno", 4, "BOOK"));
+					300, "Porno", 4, ItemType.MUSIC));
 			local.addItem(new Books("Lorte Sang", "Bjarne", 
-					2.42, "Classic", 1, "MUSIC"));
+					2.42, "Classic", 1, ItemType.MUSIC));
 			local.addItem(new Books("God bog", "Mr. Awesome", 
-					632, "Fantasy", 5, "BOOK"));
+					632, "Fantasy", 5, ItemType.BOOK));
 			local.addItem(new Books("Lorte bog", "Mr. Nitte", 
-					30, "Political", 0, "BOOK"));
+					30, "Political", 0, ItemType.BOOK));
 		} catch (IllegalItemException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

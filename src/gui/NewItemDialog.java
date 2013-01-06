@@ -2,6 +2,7 @@ package gui;
 
 import items.Books;
 import items.IllegalItemException;
+import items.Items.ItemType;
 import items.Music;
 
 
@@ -121,9 +122,9 @@ public class NewItemDialog extends JDialog implements ActionListener {
 			
 			try{
 			if (jcbType.getSelectedItem() == "Music") {
-			Archive.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
+			Archive.library.addItem(new Music(title, author, length, genre, rating, ItemType.MUSIC));
 			}
-			else Archive.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
+			else Archive.library.addItem(new Books(title, author, length, genre, rating, ItemType.BOOK));
 			} catch (IllegalItemException e) {
 				
 			}
