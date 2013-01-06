@@ -1,26 +1,24 @@
 package library;
 
-import items.Items;
-
 import java.util.ArrayList;
-
 
 public class RatingList {
 	
-	
 	private ArrayList<Integer> ratinglist;
 	
-	public RatingList(){
+	public RatingList() {
 		this.ratinglist = new ArrayList<Integer>();
 	}
-	public void addRating(int i){
+	
+	public void addRating(int i) {
 		this.ratinglist.add(i);
 	}
-	public ArrayList<Integer> getRatings(){
+	
+	public ArrayList<Integer> getRatings() {
 		return this.ratinglist;
 	}
 	
-	public Integer[] find(Integer rating){
+	public Integer[] find(Integer rating) {
 		int count = 0;
 		for (Integer current : ratinglist) {
 			if (current == rating) {

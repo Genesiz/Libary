@@ -28,48 +28,28 @@ public class Books extends Items {
 		return this.title;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetAuthor()
-	 */
 	@Override
 	public String GetAuthor() {
-		// TODO Auto-generated method stub
 		return this.author;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetLength()
-	 */
 	@Override
 	public double GetLength() {
-		// TODO Auto-generated method stub
 		return this.length;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetGenre()
-	 */
 	@Override
 	public String GetGenre() {
-		// TODO Auto-generated method stub
 		return this.genre;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetRating()
-	 */
 	@Override
 	public int GetRating() {
-		// TODO Auto-generated method stub
 		return this.rating;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetType()
-	 */
 	@Override
 	public ItemType GetType() {
-		// TODO Auto-generated method stub
 		return this.type;
 	}
 

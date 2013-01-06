@@ -1,10 +1,5 @@
 package gui;
 
-import library.TitleList;
-import library.AuthorList;
-import library.GenreList;
-import library.RatingList;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +16,8 @@ public class Mainframe extends JFrame {
 	private JCheckBox jcbLength;
 	private JCheckBox jcbRating;
 	private JTextField jtfSearch;
+	private JButton jbtNew;
+	private JLabel jlSearch;
 	
 
 	public Mainframe(){
@@ -30,15 +27,14 @@ public class Mainframe extends JFrame {
 		 
 		 p1.setLayout(new FlowLayout());
 		 p2.setLayout(new FlowLayout());
-
 		 
-		 JButton jbtNew = new JButton("Add new");
-		 JLabel jlSearch = new JLabel("Search:");
+		 jbtNew = new JButton("Add new");
+		 jlSearch = new JLabel("Search:");
 		 jtfSearch = new JTextField(10);
 		 jcbTitle = new JCheckBox("Title");
 		 jcbAuthor = new JCheckBox("Author");
 		 jcbGenre = new JCheckBox("Genre");
-//		 jcbLength = new JCheckBox("Length");
+		 jcbLength = new JCheckBox("Length");
 		 jcbRating = new JCheckBox("Rating");
 		 
 		 jtfSearch.addActionListener(new SearchListener());
@@ -63,17 +59,15 @@ public class Mainframe extends JFrame {
 		 p2.add(jcbTitle);
 		 p2.add(jcbAuthor);
 		 p2.add(jcbGenre);
-//		 p2.add(jcbLength);
+		 // false because, else it catches NPE. Instead of //
+		 jcbLength.setVisible(false);
+		 p2.add(jcbLength);
 		 p2.add(jcbRating);
-		 
-		 
-			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		 setLayout(new BorderLayout());
-	
+		 this.setLayout(new BorderLayout());
+		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		 this.add(p1, BorderLayout.NORTH);
-		 this.add(p2);
-		 
+		 this.add(p2); 
 //		 this.add(p3, BorderLayout.SOUTH);
 		 
 		}
@@ -193,31 +187,44 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switch (i) {
 				case 1 : {
-				String[] list = Archive.library.getTitles().find(jtfSearch.getText());
-				for (String current : list) {
-					System.out.println(current);
-				}
+					String text = jtfSearch.getText();
+					String[] list = Archive.library.getTitles().find(text);
+					for (String current : list) {
+						System.out.println(current);
+					}
+					break;
 				}
 				case 2 : {
-				String[] list = Archive.library.getAuthors().find(jtfSearch.getText());
-				for (String current : list) {
-					System.out.println(current);
+					String text = jtfSearch.getText();
+					String[] list = Archive.library.getAuthors().find(text);
+					for (String current : list) {
+						System.out.println(current);
 					}
+					break;
 				}
 				
 				case 3 : {
-				String[] list = Archive.library.getGenre().find(jtfSearch.getText());
-				for (String current : list)
-					System.out.println(current);
+					String text = jtfSearch.getText();
+					String[] list = Archive.library.getGenre().find(text);
+					for (String current : list)
+						System.out.println(current);
+					break;
 				}
 
 				case 5 : {
-				Integer[] list = Archive.library.getRatings().find(Integer.valueOf(jtfSearch.getText()));
-				for (int current : list)
-					System.out.println(current);
+					String text = jtfSearch.getText();
+					int convert = Integer.valueOf(text);
+					Integer[] list = Archive.library.getRatings().find(convert);
+					for (int current : list) {
+						System.out.println(current);
+					}
+					break;
 				}
+				
 				default : System.out.println("YOLO"); break;
 				}
+				
+				jtfSearch.setText("");
 				
 			}
 			

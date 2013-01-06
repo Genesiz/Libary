@@ -90,43 +90,46 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(jtfTitle.getText().isEmpty()){
+			if (jtfTitle.getText().isEmpty())
 				 title = "Unknown";
-			}
-			else title = jtfTitle.getText();
+			else
+				title = jtfTitle.getText();
 			
-			if(jtfAuthor.getText().isEmpty()){
+			if (jtfAuthor.getText().isEmpty())
 				author = "Unknown"; 
-			}
-			else author = jtfAuthor.getText();
+			else 
+				author = jtfAuthor.getText();
 			
 			try  {
-			if(jtfRating.getText().isEmpty()){
+			if (jtfRating.getText().isEmpty()) 
 				rating = 0;
-			}
-			else rating = Integer.valueOf(jtfRating.getText());
+			else 
+				rating = Integer.valueOf(jtfRating.getText());
 			
-			if(jtfLength.getText().isEmpty()){
+			if (jtfLength.getText().isEmpty())
 				length = 0.0;
-			}
-			else length = Double.valueOf(jtfLength.getText());
-			
+			else
+				length = Double.valueOf(jtfLength.getText());
 			} catch (NumberFormatException e) {
 				System.err.print("Input must be a number");
 			}
 			
-			if(jtfGenre.getText().isEmpty()){
+			if(jtfGenre.getText().isEmpty())
 				genre = "Unknown";
-			}
-			else genre = jtfGenre.getText();
+			else 
+				genre = jtfGenre.getText();
 			
-			try{
-			if (jcbType.getSelectedItem() == "Music") {
-			Archive.library.addItem(new Music(title, author, length, genre, rating, ItemType.MUSIC));
-			}
-			else Archive.library.addItem(new Books(title, author, length, genre, rating, ItemType.BOOK));
-			} catch (IllegalItemException e) {
+			try {
+				if (jcbType.getSelectedItem() == "Music") 
+					Archive.library.addItem(new Music(title, author, length, 
+							genre, rating, ItemType.MUSIC));
 				
+				else 
+					Archive.library.addItem(new Books(title, author, length,
+							genre, rating, ItemType.BOOK));
+			} 
+			catch (IllegalItemException e) {
+				// do statusbar ?
 			}
 			
 			jtfTitle.setText("");
@@ -136,12 +139,13 @@ public class NewItemDialog extends JDialog implements ActionListener {
 			jtfRating.setText("");
 			
 		}
-		
 	}
+	/**
+	 * Controls the close button.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.dispose();
-		
+		this.dispose();	
 	}
 	
 }
