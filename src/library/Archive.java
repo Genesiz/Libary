@@ -52,11 +52,10 @@ public class Archive {
 	
 	public void printLibrary() {
 		for (Items item : this.getLibrary() ) {
-			System.out.println(
-					String.format("Title: %s, Author: %s, Genre: %s, " +
-							"Length: %f, Rating: %d, Type: %s",
+			System.out.printf("Title: %s, Author: %s, Genre: %s, " +
+							"Length: %f, Rating: %d, Type: %s %n",
 							item.GetTitle(), item.GetAuthor(), item.GetGenre(),
-							item.GetLength(), item.GetRating(), item.GetType() ));
+							item.GetLength(), item.GetRating(), item.GetType());
 		}
 	}
 
