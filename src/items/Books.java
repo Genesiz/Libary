@@ -1,13 +1,12 @@
 package items;
 
-public class Books extends Items {
+public class Books extends Item {
 	
 	private String title, author, genre;
 	private ItemType type;
 	private int rating;
 	private double length;
 	
-
 	public Books(String title, String author, double length, 
 			String genre, int rating, ItemType type) throws IllegalItemException {
 		
@@ -24,33 +23,40 @@ public class Books extends Items {
 		
 	}
 	@Override
-	public String GetTitle() {
+	public String getTitle() {
 		return this.title;
 	}
 
 	@Override
-	public String GetAuthor() {
+	public String getAuthor() {
 		return this.author;
 	}
 
 	@Override
-	public double GetLength() {
+	public double getLength() {
 		return this.length;
 	}
 
 	@Override
-	public String GetGenre() {
+	public String getGenre() {
 		return this.genre;
 	}
 
 	@Override
-	public int GetRating() {
+	public int getRating() {
 		return this.rating;
 	}
 
 	@Override
-	public ItemType GetType() {
+	public ItemType getType() {
 		return this.type;
+	}
+	@Override
+	public void printItem() {
+		System.out.printf("Title: %s, Author: %s, Genre: %s, " +
+				"Length: %.2f, Rating: %d, Type: %s %n",
+				this.getTitle(), this.getAuthor(), this.getGenre(),
+				this.getLength(), this.getRating(), this.getType());	
 	}
 
 }

@@ -1,13 +1,13 @@
 package library;
 
-import items.Items;
-import items.Items.ItemType;
+import items.Item;
+import items.Item.ItemType;
 
 import java.util.ArrayList;
 
 public class Archive {
 	
-	private ArrayList<Items> archieve;
+	private ArrayList<Item> archieve;
 	private TitleList titleList;
 	private GenreList genreList;
 	private AuthorList authorList;
@@ -15,23 +15,27 @@ public class Archive {
 	
 	public static Archive library = new Archive();
 	
+	public enum ItemInfo {
+		TITLE, AUTHOR, GENRE, RATING
+	}
+	
 	private Archive() {	
-		this.archieve = new ArrayList<Items>();
+		this.archieve = new ArrayList<Item>();
 		this.titleList = new TitleList();
 		this.genreList = new GenreList();
 		this.authorList = new AuthorList();
 		this.ratingList = new RatingList();
 	}
 	
-	public void addItem(Items item) {
+	public void addItem(Item item) {
 		this.archieve.add(item);
-		this.titleList.addTitle(item.GetTitle());
-		this.authorList.addAuthor(item.GetAuthor());
-		this.genreList.addGenre(item.GetGenre());
-		this.ratingList.addRating(item.GetRating());
+		this.titleList.addTitle(item.getTitle());
+		this.authorList.addAuthor(item.getAuthor());
+		this.genreList.addGenre(item.getGenre());
+		this.ratingList.addRating(item.getRating());
 	}
 	
-	public ArrayList<Items> getLibrary() {
+	public ArrayList<Item> getLibrary() {
 		return this.archieve;
 	}
 	
@@ -51,19 +55,53 @@ public class Archive {
 		return this.ratingList;
 	}
 	
-	public void printLibrary() {
-		for (Items item : this.getLibrary() ) {
-			if (item.GetType() == ItemType.MUSIC)
-			System.out.printf("Title: %s, Author: %s, Genre: %s, " +
-							"Length: %.2f, Rating: %d, Type: %s %n",
-							item.GetTitle(), item.GetAuthor(), item.GetGenre(),
-							item.GetLength(), item.GetRating(), item.GetType()); 
+	public Item getItemAt (int index) {
+		return this.getLibrary().get(index);
+	}
+	
+	/**
+	 * Not the best way.
+	 * @param find search String of what to find!
+	 * @param itemInfo what info to search for : criteria
+	 * @return
+	 */
+	public Item getItem(String find, ItemInfo itemInfo) {
 		
-			else
-				System.out.printf("Title: %s, Author: %s, Genre: %s, " +
-						"Length: %.2f, Rating: %d, Type: %s %n",
-						item.GetTitle(), item.GetAuthor(), item.GetGenre(),
-						item.GetLength(), item.GetRating(), item.GetType());
+		for (Item item : this.getLibrary()) {
+
+		switch (itemInfo) {
+		case AUTHOR:
+			if (item.getAuthor().equals(find))
+				return item;
+			break;
+		case GENRE:
+			if (item.getGenre().equals(find))
+				return item;
+			break;
+		case RATING:
+			if (item.getRating() == Integer.valueOf(find))
+				return item;
+			break;
+		case TITLE:
+			if (item.getTitle().equals(find))
+				return item;
+			break;
+		default:
+			break;
+		}			
+			
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Prints out all items in the Archive. 
+	 * Used for testing only.
+	 */
+	public void printLibrary() {
+		for (Item item : this.getLibrary() ) {
+			item.printItem();
 		}
 	}
 }

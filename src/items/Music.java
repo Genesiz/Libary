@@ -1,6 +1,6 @@
 package items;
 
-public class Music extends Items {
+public class Music extends Item {
 	
 	private String title, author, genre;
 	private double length;
@@ -22,33 +22,41 @@ public class Music extends Items {
 	}
 
 	@Override
-	public String GetTitle() {
+	public String getTitle() {
 		return title;
 	}
 
 	@Override
-	public String GetAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
 	@Override
-	public double GetLength() {
+	public double getLength() {
 		return length;
 	}
 
 	@Override
-	public String GetGenre() {
+	public String getGenre() {
 		return genre;
 	}
 
 	@Override
-	public int GetRating() {
+	public int getRating() {
 		return rating;
 	}
 
 	@Override
-	public ItemType GetType() {
+	public ItemType getType() {
 		return type;
+	}
+
+	@Override
+	public void printItem() {
+		System.out.printf("Title: %s, Author: %s, Genre: %s, " +
+				"Length: %.2f, Rating: %d, Type: %s %n",
+				this.getTitle(), this.getAuthor(), this.getGenre(),
+				this.getLength(), this.getRating(), this.getType()); 		
 	}
 
 	

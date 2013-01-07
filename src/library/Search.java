@@ -1,34 +1,32 @@
 package library;
 
-import items.Items;
+import items.Item;
 
 import java.util.ArrayList;
+
+import library.Archive.ItemInfo;
 
 public class Search {
 	
 	public Search() {	
 	}
 	
-	public enum ItemInfo {
-		TITLE, AUTHOR, GENRE, RATING
-	}
-	
-	public Items[] find(String keyword,ItemInfo itemInfo) {
-		ArrayList<Items> tempArchieve = Archive.library.getLibrary();
+	public Item[] find(String keyword,ItemInfo itemInfo) {
+		ArrayList<Item> tempArchieve = Archive.library.getLibrary();
 		int count = 0;
 		int i = 0;
 
 		switch (itemInfo) {
-		case TITLE : 	for (Items current : tempArchieve) {
-							String str = current.GetTitle().toLowerCase();
+		case TITLE : 	for (Item current : tempArchieve) {
+							String str = current.getTitle().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								count ++;
 							}
 						}
-						Items[] list = new Items[count];
+						Item[] list = new Item[count];
 						i = 0;
-							for (Items current : tempArchieve) {
-								String str = current.GetTitle().toLowerCase();
+							for (Item current : tempArchieve) {
+								String str = current.getTitle().toLowerCase();
 								if (str.contains(keyword.toLowerCase())) {
 									list[i] = current;
 									i++;
@@ -37,16 +35,16 @@ public class Search {
 							return list;
 							
 		case AUTHOR :  
-					for (Items current : tempArchieve) {
-						String str = current.GetAuthor().toLowerCase();
+					for (Item current : tempArchieve) {
+						String str = current.getAuthor().toLowerCase();
 						if (str.contains(keyword.toLowerCase())) {
 							count ++;
 						}
 					}
-					Items[] list2 = new Items[count];
+					Item[] list2 = new Item[count];
 					i = 0;
-						for (Items current : tempArchieve) {
-							String str = current.GetAuthor().toLowerCase();
+						for (Item current : tempArchieve) {
+							String str = current.getAuthor().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								list2[i] = current;
 								i++;
@@ -57,16 +55,16 @@ public class Search {
 			
 		
 			case GENRE:
-						for (Items current : tempArchieve) {
-						String str = current.GetGenre().toLowerCase();
+						for (Item current : tempArchieve) {
+						String str = current.getGenre().toLowerCase();
 						if (str.contains(keyword.toLowerCase())) {
 							count ++;
 						}
 					}
-					Items[] list3 = new Items[count];
+					Item[] list3 = new Item[count];
 					i = 0;
-						for (Items current : tempArchieve) {
-							String str = current.GetGenre().toLowerCase();
+						for (Item current : tempArchieve) {
+							String str = current.getGenre().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								list3[i] = current;
 								i++;
@@ -74,16 +72,16 @@ public class Search {
 						}
 					return list3;
 		case RATING:
-					for (Items current : tempArchieve) {
-						int rating = current.GetRating();
+					for (Item current : tempArchieve) {
+						int rating = current.getRating();
 						if (rating == Integer.valueOf(keyword)) {
 							count ++;
 						}
 					}
-					Items[] list4 = new Items[count];
+					Item[] list4 = new Item[count];
 					i = 0;
-						for (Items current : tempArchieve) {
-							int rating = current.GetRating();
+						for (Item current : tempArchieve) {
+							int rating = current.getRating();
 							if (rating == Integer.valueOf(keyword)) {
 								list4[i] = current;
 								i++;
@@ -101,33 +99,33 @@ public class Search {
 		
 	}
 	
-	public String[] toStringArray(Items[] itemArray, ItemInfo itemInfo) {
+	public String[] toStringArray(Item[] itemArray, ItemInfo itemInfo) {
 		
 		String[] array = new String[itemArray.length];
 		int i = 0;
 		switch (itemInfo) {
 		case AUTHOR:
-			for (Items current : itemArray) {
-				array[i] = current.GetAuthor();
+			for (Item current : itemArray) {
+				array[i] = current.getAuthor();
 				i++;
 			}
 			return array;
 			
 		case GENRE:
-			for (Items current : itemArray) {
-				array[i] = current.GetGenre();
+			for (Item current : itemArray) {
+				array[i] = current.getGenre();
 				i++;
 			}
 			return array;
 		case RATING:
-			for (Items current : itemArray) {
-				array[i] = String.valueOf(current.GetRating());
+			for (Item current : itemArray) {
+				array[i] = String.valueOf(current.getRating());
 				i++;
 			}
 			return array;
 		case TITLE:
-			for (Items current : itemArray) {
-				array[i] = current.GetTitle();
+			for (Item current : itemArray) {
+				array[i] = current.getTitle();
 				i++;
 			}
 			return array;
