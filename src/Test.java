@@ -2,12 +2,16 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import saad.Load;
+
 import gui.Mainframe;
 import items.Books;
 import items.IllegalItemException;
-import items.Items.ItemType;
+import items.Item;
+import items.Item.ItemType;
 import library.Archive;
 import library.AuthorList;
+import library.Search;
 
 
 public class Test {
@@ -28,20 +32,11 @@ public class Test {
 		}
 		
 		local.printLibrary();
-//		String[] test = local.getTitles().find("bOg");
-//		for (String test00 : test) {
-//			System.out.println(test00);
-//		}
 		
-		
-		
-		JFrame frame = new Mainframe();
-		frame.pack();
-
-		//frame.setDefaultCloseOperation(0);
-		//frame.setSize(500,500);
-
-		frame.setVisible(true);
+		Load load = new Load("test.txt");
+		load.LoadIt();
+		//JFrame frame = new Mainframe();
+		//frame.setVisible(true);
 	
 	}
 	
