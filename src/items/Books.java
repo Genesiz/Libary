@@ -2,13 +2,14 @@ package items;
 
 public class Books extends Items {
 	
-	private String title, author, genre, type;
+	private String title, author, genre;
+	private ItemType type;
 	private int rating;
 	private double length;
 	
 
 	public Books(String title, String author, double length, 
-			String genre, int rating, String type) throws IllegalItemException {
+			String genre, int rating, ItemType type) throws IllegalItemException {
 		
 		if (rating <= 5 && rating >= 0)
 			this.rating = rating;
@@ -27,48 +28,28 @@ public class Books extends Items {
 		return this.title;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetAuthor()
-	 */
 	@Override
 	public String GetAuthor() {
-		// TODO Auto-generated method stub
 		return this.author;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetLength()
-	 */
 	@Override
 	public double GetLength() {
-		// TODO Auto-generated method stub
 		return this.length;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetGenre()
-	 */
 	@Override
 	public String GetGenre() {
-		// TODO Auto-generated method stub
 		return this.genre;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetRating()
-	 */
 	@Override
 	public int GetRating() {
-		// TODO Auto-generated method stub
 		return this.rating;
 	}
 
-	/* (non-Javadoc)
-	 * @see items.Items#GetType()
-	 */
 	@Override
-	public String GetType() {
-		// TODO Auto-generated method stub
+	public ItemType GetType() {
 		return this.type;
 	}
 

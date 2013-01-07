@@ -1,31 +1,25 @@
 package library;
 
-import items.Items;
-
 import java.util.ArrayList;
-import java.util.Collections;
-
 
 public class TitleList {
 	
-	
 	private ArrayList<String> titleList;
 	
-	public TitleList(){
+	public TitleList() {
 		this.titleList = new ArrayList<String>();
 	}
 	
-	public void addTitle(String title){
+	public void addTitle(String title) {
 			this.titleList.add(title);
 	}
 	
-	public ArrayList<String> getTitles(){
+	public ArrayList<String> getTitles() {
 		return this.titleList;
 	}
 	
-	public String[] find(String title){
+	public String[] find(String title) {
 		int count = 0;
-
 		for (String current : this.getTitles()) {
 			if (current.toLowerCase().contains(title.toLowerCase())) 
 				count++;
