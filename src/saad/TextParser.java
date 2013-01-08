@@ -1,6 +1,6 @@
 package saad;
 
-import items.Books;
+import items.Book;
 import items.IllegalItemException;
 import items.Item;
 import items.Music;
@@ -44,7 +44,7 @@ public class TextParser {
 						genre, rating, ItemType.MUSIC));
 						break;
 					case "BOOK" : 
-						list.add(new Books(title, author, length,
+						list.add(new Book(title, author, length,
 						genre, rating, ItemType.BOOK));
 						break;
 					default : 

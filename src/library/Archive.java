@@ -40,20 +40,35 @@ public class Archive {
 	}
 	
 	public TitleList getTitles() {
-		return this.titleList;
+		titleList = new TitleList();
+		for (Item item : this.getLibrary()) {
+			titleList.addTitle(item.getTitle());
+		}
+		return titleList;
 	}
 	
 	public GenreList getGenre() {
-		return this.genreList;
+		genreList = new GenreList();
+		for (Item item : this.getLibrary()) {
+			genreList.addGenre(item.getGenre());
+		}
+		return genreList;
 	}
 	
 	public AuthorList getAuthors() {
-		return this.authorList;
+		authorList = new AuthorList();
+		for (Item item : this.getLibrary()) {
+			authorList.addAuthor(item.getAuthor());
+		}
+		return authorList;
 	}
 	
 	public RatingList getRatings() {
-		return this.ratingList;
-	}
+		ratingList = new RatingList();
+		for (Item item : this.getLibrary()) {
+			ratingList.addRating(item.getRating());
+		}
+		return ratingList;	}
 	
 	public Item getItemAt (int index) {
 		return this.getLibrary().get(index);

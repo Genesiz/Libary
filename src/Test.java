@@ -6,7 +6,7 @@ import saad.Load;
 import saad.TextParser;
 
 import gui.Mainframe;
-import items.Books;
+import items.Book;
 import items.IllegalItemException;
 import items.Item;
 import items.Item.ItemType;
@@ -19,13 +19,13 @@ public class Test {
 	public static void main(String[] args) {
 		Archive local = Archive.library;
 		try {
-			local.addItem(new Books("50 shades of grey", "Joe", 
+			local.addItem(new Book("50 shades of grey", "Joe", 
 					300, "Porno", 4, ItemType.MUSIC));
-			local.addItem(new Books("Lorte Sang", "Bjarne", 
+			local.addItem(new Book("Lorte Sang", "Bjarne", 
 					2.42, "Classic", 1, ItemType.MUSIC));
-			local.addItem(new Books("God bog", "Mr. Awesome", 
+			local.addItem(new Book("God bog", "Mr. Awesome", 
 					632, "Fantasy", 5, ItemType.BOOK));
-			local.addItem(new Books("Lorte bog", "Mr. Nitte", 
+			local.addItem(new Book("Lorte bog", "Mr. Nitte", 
 					30, "Political", 0, ItemType.BOOK));
 		} catch (IllegalItemException e) {
 			// TODO Auto-generated catch block

@@ -1,13 +1,13 @@
 package items;
 
-public class Books extends Item {
+public class Book extends Item {
 	
 	private String title, author, genre;
 	private ItemType type;
 	private int rating;
 	private double length;
 	
-	public Books(String title, String author, double length, 
+	public Book(String title, String author, double length, 
 			String genre, int rating, ItemType type) throws IllegalItemException {
 		
 		if (rating <= 5 && rating >= 0)
