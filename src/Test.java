@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import saad.Load;
+import saad.TextParser;
 
 import gui.Mainframe;
 import items.Books;
@@ -33,10 +34,10 @@ public class Test {
 		
 		local.printLibrary();
 		
-		Load load = new Load("test.txt");
-		load.LoadIt();
-		//JFrame frame = new Mainframe();
-		//frame.setVisible(true);
+		new Load("test.txt");
+
+		JFrame frame = new Mainframe();
+		frame.setVisible(true);
 	
 	}
 	
