@@ -73,6 +73,16 @@ public class Search {
 						}
 					return list3;
 		case RATING:
+					i = 0;
+					// prints out all if rating is kept empty.
+					if (keyword.isEmpty()) {
+						Item[] list5 = new Item[arch.size()];
+						for (Item current : arch) {
+								list5[i] = current;
+								i++;
+							}
+						return list5;
+					}
 					for (Item current : arch) {
 						int rating = current.getRating();
 						if (rating == Integer.valueOf(keyword)) {
@@ -80,7 +90,6 @@ public class Search {
 						}
 					}
 					Item[] list4 = new Item[count];
-					i = 0;
 						for (Item current : arch) {
 							int rating = current.getRating();
 							if (rating == Integer.valueOf(keyword)) {
