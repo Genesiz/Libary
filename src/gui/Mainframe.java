@@ -1,5 +1,7 @@
 package gui;
 
+import items.Item;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import library.Archive;
+import library.Archive.ItemInfo;
+import library.Search;
 
 public class Mainframe extends JFrame {
 	
@@ -18,8 +22,8 @@ public class Mainframe extends JFrame {
 	private JTextField jtfSearch;
 	private JButton jbtNew;
 	private JLabel jlSearch;
+	private int i;
 	
-
 	public Mainframe(){
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
@@ -27,6 +31,8 @@ public class Mainframe extends JFrame {
 		 
 		 p1.setLayout(new FlowLayout());
 		 p2.setLayout(new FlowLayout());
+		 p3.setLayout(new FlowLayout());
+
 		 
 		 jbtNew = new JButton("Add new");
 		 jlSearch = new JLabel("Search:");
@@ -63,17 +69,19 @@ public class Mainframe extends JFrame {
 		 jcbLength.setVisible(false);
 		 p2.add(jcbLength);
 		 p2.add(jcbRating);
-
 		 this.setLayout(new BorderLayout());
-		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		 this.add(p1, BorderLayout.NORTH);
-		 this.add(p2); 
-//		 this.add(p3, BorderLayout.SOUTH);
+		 this.add(p1, BorderLayout.PAGE_START);
+		 this.add(p2, BorderLayout.CENTER); 
+		 this.add(p3, BorderLayout.PAGE_END);
 		 
-		}
+		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		 this.setSize(500,300);
+		 this.setResizable(false);
+		 this.setLocationRelativeTo(null);
+
+		 
+		}		
 		
-		int i;
-	
 		class CheckTitleListener implements ActionListener {
 
 			@Override
@@ -168,7 +176,7 @@ public class Mainframe extends JFrame {
 					jcbAuthor.setEnabled(false);
 					jcbGenre.setEnabled(false);
 					jcbLength.setEnabled(false);
-					i = 4;
+					i = 5;
 				}
 				else {
 					jcbTitle.setEnabled(true);
@@ -187,11 +195,11 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switch (i) {
 				case 1 : {
-					String text = jtfSearch.getText();
-					String[] list = Archive.library.getTitles().find(text);
-					for (String current : list) {
-						System.out.println(current);
-					}
+					String input = jtfSearch.getText();
+					Search search = new Search();
+					Item[] itemList = search.find(input, ItemInfo.TITLE);
+					String[] array = search.toStringArray(itemList, ItemInfo.TITLE);
+					ListPanel.updateList(array);
 					break;
 				}
 				case 2 : {
@@ -221,7 +229,7 @@ public class Mainframe extends JFrame {
 					break;
 				}
 				
-				default : System.out.println("YOLO"); break;
+				default : System.out.println("No search criteria!"); break;
 				}
 				
 				jtfSearch.setText("");

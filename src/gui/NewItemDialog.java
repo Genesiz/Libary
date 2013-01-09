@@ -1,8 +1,8 @@
 package gui;
 
-import items.Books;
+import items.Book;
 import items.IllegalItemException;
-import items.Items.ItemType;
+import items.Item.ItemType;
 import items.Music;
 
 
@@ -125,7 +125,7 @@ public class NewItemDialog extends JDialog implements ActionListener {
 							genre, rating, ItemType.MUSIC));
 				
 				else 
-					Archive.library.addItem(new Books(title, author, length,
+					Archive.library.addItem(new Book(title, author, length,
 							genre, rating, ItemType.BOOK));
 			} 
 			catch (IllegalItemException e) {

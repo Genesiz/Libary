@@ -1,11 +1,18 @@
 package gui;
 
+
+import java.awt.Dimension;
+
+import items.Item;
+
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 
 import library.Archive;
-import library.TitleList;
 
 /**
  * @author Hjalte S. Jorgensen
@@ -13,18 +20,35 @@ import library.TitleList;
  */
 public class ListPanel extends JPanel {
 	
-	private DefaultListModel<String> list;
+	private static final long serialVersionUID = 1L;
+	private static DefaultListModel<String> list;
+	private static JList<String> jlSearchResult;
+	private JScrollPane scrollPane;
 
+	/**
+	 * Make it use JTable and rowfilter instead
+	 */
 	public ListPanel() {
-		 DefaultListModel<String> listModel = new DefaultListModel<String>();
-		 TitleList testList = Archive.library.getTitles();
-		 for (String test : testList.getTitles() ) {
-			 listModel.addElement(test);
+		JLabel jLabel = new JLabel("Search result:");
+		jlSearchResult = new JList<String>();
+		
+		TitledBorder titledBorder = new TitledBorder("Title:");
+	      
+		jlSearchResult.setBorder(titledBorder);
+		scrollPane = new JScrollPane(jlSearchResult);
+		
+		jlSearchResult.setVisibleRowCount(5);
+		jlSearchResult.setSize(100, 100);
+		this.add(jLabel);
+	    this.add(scrollPane);
+	}
+	
+	public static void updateList(String[] array) {
+		 list = new DefaultListModel<String>();
+		 for (String test : array) {
+			 list.addElement(test);
 		 }
-		 JList list = new JList();
-		 list.setModel(listModel);
-		 this.add(list);
-		 
+		 jlSearchResult.setModel(list);	 
 	}
 
 }

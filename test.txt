@@ -1,0 +1,3 @@
+MUSIC title author genre 1.0 4
+BOOK title author genre 1.0 4
+MUSIC title author genre 1.0 4

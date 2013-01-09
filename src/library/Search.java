@@ -3,6 +3,7 @@ package library;
 import items.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import library.Archive.ItemInfo;
 
@@ -12,12 +13,12 @@ public class Search {
 	}
 	
 	public Item[] find(String keyword,ItemInfo itemInfo) {
-		ArrayList<Item> tempArchieve = Archive.library.getLibrary();
+		ArrayList<Item> arch = Archive.library.getLibrary();
 		int count = 0;
 		int i = 0;
 
 		switch (itemInfo) {
-		case TITLE : 	for (Item current : tempArchieve) {
+		case TITLE : 	for (Item current : arch) {
 							String str = current.getTitle().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								count ++;
@@ -25,7 +26,7 @@ public class Search {
 						}
 						Item[] list = new Item[count];
 						i = 0;
-							for (Item current : tempArchieve) {
+							for (Item current : arch) {
 								String str = current.getTitle().toLowerCase();
 								if (str.contains(keyword.toLowerCase())) {
 									list[i] = current;
@@ -35,7 +36,7 @@ public class Search {
 							return list;
 							
 		case AUTHOR :  
-					for (Item current : tempArchieve) {
+					for (Item current : arch) {
 						String str = current.getAuthor().toLowerCase();
 						if (str.contains(keyword.toLowerCase())) {
 							count ++;
@@ -43,7 +44,7 @@ public class Search {
 					}
 					Item[] list2 = new Item[count];
 					i = 0;
-						for (Item current : tempArchieve) {
+						for (Item current : arch) {
 							String str = current.getAuthor().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								list2[i] = current;
@@ -55,7 +56,7 @@ public class Search {
 			
 		
 			case GENRE:
-						for (Item current : tempArchieve) {
+						for (Item current : arch) {
 						String str = current.getGenre().toLowerCase();
 						if (str.contains(keyword.toLowerCase())) {
 							count ++;
@@ -63,7 +64,7 @@ public class Search {
 					}
 					Item[] list3 = new Item[count];
 					i = 0;
-						for (Item current : tempArchieve) {
+						for (Item current : arch) {
 							String str = current.getGenre().toLowerCase();
 							if (str.contains(keyword.toLowerCase())) {
 								list3[i] = current;
@@ -72,7 +73,7 @@ public class Search {
 						}
 					return list3;
 		case RATING:
-					for (Item current : tempArchieve) {
+					for (Item current : arch) {
 						int rating = current.getRating();
 						if (rating == Integer.valueOf(keyword)) {
 							count ++;
@@ -80,7 +81,7 @@ public class Search {
 					}
 					Item[] list4 = new Item[count];
 					i = 0;
-						for (Item current : tempArchieve) {
+						for (Item current : arch) {
 							int rating = current.getRating();
 							if (rating == Integer.valueOf(keyword)) {
 								list4[i] = current;
@@ -135,6 +136,50 @@ public class Search {
 		
 		}
 		return null;
+		
+	}
+	
+	public HashMap<Item, Integer> findHash(String keyword,ItemInfo itemInfo) {
+		
+		ArrayList<Item> arch = Archive.library.getLibrary();
+		HashMap<Item, Integer> list = new HashMap<Item, Integer>();
+		
+		switch (itemInfo) {
+		case TITLE : for (int i = 0; i < arch.size(); i++) {
+						String str = arch.get(i).getTitle().toLowerCase();
+						if (str.contains(keyword.toLowerCase())) {
+							list.put(arch.get(i), i);
+						}
+					}
+					return list;
+							
+		case AUTHOR : for (int i = 0; i < arch.size(); i++) {
+						String str = arch.get(i).getAuthor().toLowerCase();
+						if (str.contains(keyword.toLowerCase())) {
+							list.put(arch.get(i), i);
+						}
+						}
+						return list;
+		case GENRE: for (int i = 0; i < arch.size(); i++) {
+						String str = arch.get(i).getGenre().toLowerCase();
+						if (str.contains(keyword.toLowerCase())) {
+							list.put(arch.get(i), i);
+						}
+					}
+						return list;
+		case RATING: for (int i = 0; i < arch.size(); i++) {
+						int str = arch.get(i).getRating();
+						if (str == Integer.valueOf(keyword)) {
+							list.put(arch.get(i), i);
+						}
+					}
+					return list;
+		default:
+			System.out.println("non found?");
+			break; 
+						
+		}
+		return list;
 		
 	}
 

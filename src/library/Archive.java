@@ -75,42 +75,6 @@ public class Archive {
 	}
 	
 	/**
-	 * Not the best way.
-	 * @param find search String of what to find!
-	 * @param itemInfo what info to search for : criteria
-	 * @return
-	 */
-	public Item getItem(String find, ItemInfo itemInfo) {
-		
-		for (Item item : this.getLibrary()) {
-
-		switch (itemInfo) {
-		case AUTHOR:
-			if (item.getAuthor().equals(find))
-				return item;
-			break;
-		case GENRE:
-			if (item.getGenre().equals(find))
-				return item;
-			break;
-		case RATING:
-			if (item.getRating() == Integer.valueOf(find))
-				return item;
-			break;
-		case TITLE:
-			if (item.getTitle().equals(find))
-				return item;
-			break;
-		default:
-			break;
-		}			
-			
-		}
-		return null;
-	}
-	
-	
-	/**
 	 * Prints out all items in the Archive. 
 	 * Used for testing only.
 	 */
