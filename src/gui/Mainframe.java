@@ -9,22 +9,24 @@ import java.util.Enumeration;
 
 import javax.swing.*;
 
-import library.Archive;
 import library.Archive.ItemInfo;
 import library.Search;
 
 public class Mainframe extends JFrame {
 	
-	private JRadioButton jcbTitle;
-	private JRadioButton jcbAuthor;
-	private JRadioButton jcbGenre;
-	private JRadioButton jcbLength;
-	private JRadioButton jcbRating;
+	private static final long serialVersionUID = 1L;
+	
+	private JRadioButton jrbTitle;
+	private JRadioButton jrbAuthor;
+	private JRadioButton jrbGenre;
+	private JRadioButton jrbLength;
+	private JRadioButton jrbRating;
 	private JTextField jtfSearch;
 	private JButton jbtNew;
 	private JLabel jlSearch;
-	private int i;
 	private ButtonGroup group;
+
+	private JPanel contentPane;
 	
 	public Mainframe(){
 		 JPanel p1 = new JPanel();
@@ -39,21 +41,21 @@ public class Mainframe extends JFrame {
 		 jbtNew = new JButton("Add new");
 		 jlSearch = new JLabel("Search:");
 		 jtfSearch = new JTextField(10);
-		 jcbTitle = new JRadioButton("Title");
-		 jcbTitle.setSelected(true);
-		 jcbAuthor = new JRadioButton("Author");
-		 jcbGenre = new JRadioButton("Genre");
-		 jcbLength = new JRadioButton("Length");
-		 jcbRating = new JRadioButton("Rating");
+		 jrbTitle = new JRadioButton("Title");
+		 jrbTitle.setSelected(true);
+		 jrbAuthor = new JRadioButton("Author");
+		 jrbGenre = new JRadioButton("Genre");
+		 jrbLength = new JRadioButton("Length");
+		 jrbRating = new JRadioButton("Rating");
 		 
 		 group = new ButtonGroup();
-		 group.add(jcbTitle);
-		 group.add(jcbAuthor);
-		 group.add(jcbGenre);
+		 group.add(jrbTitle);
+		 group.add(jrbAuthor);
+		 group.add(jrbGenre);
 		 // false because, else it catches NPE. Instead of //
-		 jcbLength.setVisible(false);
-		 group.add(jcbLength);
-		 group.add(jcbRating);
+		 jrbLength.setVisible(false);
+		 group.add(jrbLength);
+		 group.add(jrbRating);
 
 		 jtfSearch.addActionListener(new SearchListener());
 		 		 	
@@ -69,30 +71,34 @@ public class Mainframe extends JFrame {
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
 		 
-		 p2.add(jcbTitle);
-		 p2.add(jcbAuthor);
-		 p2.add(jcbGenre);
+		 p2.add(jrbTitle);
+		 p2.add(jrbAuthor);
+		 p2.add(jrbGenre);
 		 // false because, else it catches NPE. Instead of //
-		 jcbLength.setVisible(false);
-		 p2.add(jcbLength);
-		 p2.add(jcbRating);
-		 this.setLayout(new BorderLayout());
-		 this.add(p1, BorderLayout.PAGE_START);
-		 this.add(p2, BorderLayout.CENTER); 
-		 this.add(p3, BorderLayout.PAGE_END);
+		 jrbLength.setVisible(false);
+		 p2.add(jrbLength);
+		 p2.add(jrbRating);
+		 
+		 contentPane = new JPanel();
+		 FlowLayout layout = new FlowLayout();
+		 layout.setAlignment(FlowLayout.TRAILING);
+		 contentPane.setLayout(layout);
+		 contentPane.add(p1 );
+		 contentPane.add(p2); 
+		 contentPane.add(p3);
+		 
+		 this.setContentPane(contentPane);
+
+		 this.pack();
 		 
 		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		 this.setSize(500,300);
+		 this.setSize(600,500);
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
-
-		 
-		}	
-
-		
+	}	
+	
 		class SearchListener implements ActionListener {
-			
-			
+					
 		    public String getSelectedButtonText(ButtonGroup buttonGroup) {
 		        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 		            AbstractButton button = buttons.nextElement();

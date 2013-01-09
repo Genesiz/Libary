@@ -1,4 +1,4 @@
-package saad;
+package io;
 
 import items.Book;
 import items.IllegalItemException;
@@ -9,9 +9,6 @@ import items.Item.ItemType;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
-
-import library.Archive;
 
 public class TextParser {
 	

@@ -17,6 +17,7 @@ import library.Archive;
 
 public class NewItemDialog extends JDialog implements ActionListener {
 	
+	private static final long serialVersionUID = 1L;
 	JTextField jtfTitle;
 	JTextField jtfAuthor;
 	JTextField jtfGenre;

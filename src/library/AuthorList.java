@@ -2,7 +2,7 @@ package library;
 
 import java.util.ArrayList;
 
-
+@Deprecated
 public class AuthorList {
 	
 	

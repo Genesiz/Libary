@@ -80,7 +80,7 @@ public class Search {
 						for (Item current : arch) {
 								list5[i] = current;
 								i++;
-							}
+						}
 						return list5;
 					}
 					for (Item current : arch) {

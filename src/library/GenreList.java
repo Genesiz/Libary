@@ -1,7 +1,7 @@
 package library;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class GenreList {
 	
 	private ArrayList<String> genrelist;
