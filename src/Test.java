@@ -33,10 +33,10 @@ public class Test {
 		
 		local.printLibrary();
 		
-		Load load = new Load("test.txt");
-		load.LoadIt();
-		//JFrame frame = new Mainframe();
-		//frame.setVisible(true);
+//		Load load = new Load("test.txt");
+//		load.LoadIt();
+		JFrame frame = new Mainframe();
+		frame.setVisible(true);
 	
 	}
 	

@@ -1,6 +1,6 @@
 package gui;
 
-import items.Items;
+import items.Item;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,11 +9,11 @@ public class InfoDialog extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
 
-	public InfoDialog(Items item) {
+	public InfoDialog(Item item) {
 		JPanel panel = new JPanel();
 		GridLayout layout = new GridLayout(6,2);
 		
-		JLabel jlTitle = new JLabel("Title: " + item.GetTitle());
+		JLabel jlTitle = new JLabel("Title: " + Item.GetTitle());
 		
 		panel.add(jlTitle);
 		

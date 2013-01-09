@@ -2,7 +2,7 @@ package gui;
 
 import items.Books;
 import items.IllegalItemException;
-import items.Items.ItemType;
+import items.Item.ItemType;
 import items.Music;
 
 
