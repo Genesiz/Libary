@@ -21,17 +21,17 @@ public class ListPanel extends JPanel {
 	private static DefaultTableModel model;
 
 	/**
-	 * Make it use JTable and rowfilter instead
+	 * Makes the JTable to list all Items.
 	 */
 	public ListPanel() {
-		model = new DefaultTableModel(null, Archive.library.columnNames) {
+		model = new DefaultTableModel(null, Archive.library.getInfoNames()) {
 			private static final long serialVersionUID = 1L;
 			
 			public boolean isCellEditable(int row,int cols) {
 		    	   return false;
 		    }
 		};
-		int columns = Archive.library.columnNames.length;
+		int columns = Archive.library.getInfoNames().length;
 		model.setColumnCount(columns);
 		model.setRowCount(Archive.library.getLibrary().size());
 		
@@ -49,6 +49,9 @@ public class ListPanel extends JPanel {
 	    this.add(scrollPane);
 	}
 	
+	/**
+	 * Updates the Model for the JTable with the Archive.getLibrary instance
+	 */
 	public static void updateList() {
 		int size = Archive.library.getLibrary().size();
 		model.setRowCount(size);
@@ -65,6 +68,11 @@ public class ListPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Updates the Model for the JTable with an Item[]
+	 * Used for updating table with search results.
+	 * @param array Item[]
+	 */
 	public static void updateList(Item[] array) {
 		int size = array.length;
 		model.setRowCount(size);
@@ -80,6 +88,10 @@ public class ListPanel extends JPanel {
 		jlSearchResult.setModel(model);
 	}
 	
+	/**
+	 * Listener class for selected row in JTable
+	 * Opens a new InfoDialog on click.
+	 */
 	class RowListener implements ListSelectionListener {
 
 		@Override
@@ -87,10 +99,10 @@ public class ListPanel extends JPanel {
 			if (arg0.getValueIsAdjusting()) {
 				int index = jlSearchResult.getSelectedRow();
 				if (index != -1) {
-				Item item = Archive.library.getItemAt(index);
-				new InfoDialog(MainFrame.frame, item, index);
+					Item item = Archive.library.getItemAt(index);
+					new InfoDialog(MainFrame.frame, item, index);
 				}
-			}
+			} 
 		}
 		
 	}

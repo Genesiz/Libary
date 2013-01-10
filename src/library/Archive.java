@@ -9,20 +9,27 @@ public class Archive {
 	
 	public static Archive library = new Archive();
 	
-	public enum ItemInfo {
-		TITLE, AUTHOR, GENRE, RATING
-	}
-	public String[] columnNames = {"Title", "Author", "Genre",
-			"Length", "Rating"};
-	
+
+	/**
+	 * Constructor for Archive.
+	 * Creates an ArrayList<Item>
+	 */
 	private Archive() {	
 		this.archieve = new ArrayList<Item>();
 	}
 	
+	/**
+	 * Adds a new item to Archive
+	 * @param item non null Item
+	 */
 	public void addItem(Item item) {
 		this.archieve.add(item);
 	}
 	
+	/**
+	 * Return the archive of Items
+	 * @return ArrayList<Item>
+	 */
 	public ArrayList<Item> getLibrary() {
 		return this.archieve;
 	}
@@ -38,4 +45,8 @@ public class Archive {
 		return null;
 	}
 	
+	public String[] getInfoNames() {
+		return Item.columnNames;
+		
+	}
 }

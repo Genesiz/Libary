@@ -1,13 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import items.Item;
-import items.Item.ItemType;
 import javax.swing.*;
 
 import library.Archive;
@@ -15,7 +12,13 @@ import library.Archive;
 public class InfoDialog extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * Makes a JDialog that show an Item and delete button
+	 * @param frame the main frame of the program
+	 * @param item a non null Item
+	 * @param index in Archive.getLibrary for delete button
+	 */
 	public InfoDialog(MainFrame frame, Item item, final int index) {
 		super(frame, true);
 		JPanel p = new JPanel();
@@ -24,12 +27,17 @@ public class InfoDialog extends JDialog {
 		JLabel jlTitle = new JLabel("Title: " + item.getTitle());
 		JLabel jlAuthor = new JLabel("Author: " + item.getAuthor());
 		JLabel jlGenre = new JLabel("Genre: " + item.getGenre());
-		JLabel jlLength;
-		if (item.getType() == (ItemType.MUSIC))
+		JLabel jlLength = new JLabel("#");
+
+		switch (item.getType()) {
+		case BOOK:
 			jlLength = new JLabel("Length: " + item.getLength());
-		else
+			break;
+		case MUSIC:
 			jlLength = new JLabel("Pages: " + item.getLength());
-		
+			break;		
+		}
+
 		JLabel jlRating = new JLabel("Rating: " + item.getRating());
 		JButton jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
@@ -68,15 +76,19 @@ public class InfoDialog extends JDialog {
 		this.add(p, BorderLayout.PAGE_START);
 		this.add(p2, BorderLayout.PAGE_END);
 		this.pack();
-		if (item.getType() == (ItemType.MUSIC))
-			this.setTitle("Music");
-		else
+		
+		switch (item.getType()) {
+		case BOOK:
 			this.setTitle("Book");
+			break;
+		case MUSIC:
+			this.setTitle("Music");
+			break;		
+		}
+		
 		this.setResizable(false);
 		this.setLocationRelativeTo(frame);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
-
 	}
-
 }

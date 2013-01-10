@@ -1,6 +1,7 @@
 package gui;
 
 import items.Item;
+import items.Item.ItemInfo;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +10,6 @@ import java.util.Enumeration;
 
 import javax.swing.*;
 
-import library.Archive.ItemInfo;
 import library.Search;
 
 public class MainFrame extends JFrame {
@@ -29,6 +29,9 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	
+	/**
+	 *  Creates the main frame and adds two JPanels and a ListPanel
+	 */
 	private MainFrame(){
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
@@ -89,62 +92,55 @@ public class MainFrame extends JFrame {
 		 contentPane.add(p3);
 		 
 		 this.setContentPane(contentPane);
-
 		 this.pack();
-		 
 		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		 this.setSize(600,500);
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
 	}	
 	
-		class SearchListener implements ActionListener {
+	/**
+	 * Listener for the search button.
+	 */
+	class SearchListener implements ActionListener {
 					
-		    public String getSelectedButtonText(ButtonGroup buttonGroup) {
-		        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-		            AbstractButton button = buttons.nextElement();
+		public String getSelectedButtonText(ButtonGroup buttonGroup) {
+			for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); 
+					buttons.hasMoreElements();) {
+				AbstractButton button = buttons.nextElement();
 
-		            if (button.isSelected()) {
-		                return button.getText();
-		            }
-		        }
-
-		        return null;
+			    if (button.isSelected()) {
+			    	return button.getText();
+			    }
 		    }
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String input = jtfSearch.getText();
-				Search search = new Search();
-
-				switch (this.getSelectedButtonText(group)) {
-				case "Title" : {
-					Item[] itemList = search.find(input, ItemInfo.TITLE);
-					ListPanel.updateList(itemList);
-					break;
-				}
-				case "Author" : {
-					Item[] itemList = search.find(input, ItemInfo.AUTHOR);
-					ListPanel.updateList(itemList);
-					break;
-				}
-				
-				case "Genre" : {
-					Item[] itemList = search.find(input, ItemInfo.GENRE);
-					ListPanel.updateList(itemList);
-					break;
-				}
-
-				case "Rating" : 
-					Item[] itemList = search.find(input, ItemInfo.RATING);
-					ListPanel.updateList(itemList);
-					break;
-				
-				default : System.out.println("No search criteria!"); break;
-				}
-				
-				jtfSearch.setText("");
-				
-			}
-			
+		    return null;
 		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String input = jtfSearch.getText();
+			Search search = Search.instance;
+
+			switch (this.getSelectedButtonText(group)) {
+			case "Title" : {
+				Item[] itemList = search.find(input, ItemInfo.TITLE);					ListPanel.updateList(itemList);
+				break;
+			}
+			case "Author" : {
+				Item[] itemList = search.find(input, ItemInfo.AUTHOR);
+				ListPanel.updateList(itemList);					break;
+			}	
+			case "Genre" : {
+				Item[] itemList = search.find(input, ItemInfo.GENRE);
+				ListPanel.updateList(itemList);
+				break;
+			}
+			case "Rating" : 
+				Item[] itemList = search.find(input, ItemInfo.RATING);
+				ListPanel.updateList(itemList);
+				break;
+			}
+			jtfSearch.setText("");		
+		}		
+	}
 }
