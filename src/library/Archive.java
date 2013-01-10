@@ -30,19 +30,12 @@ public class Archive {
 	/**
 	 * Return the Item at an given index.
 	 * @param index
-	 * @return
+	 * @return Item at index, or null if not valid index
 	 */
 	public Item getItemAt (int index) {
-		return this.getLibrary().get(index);
+		if (this.getLibrary().size() > index)
+			return this.getLibrary().get(index);
+		return null;
 	}
 	
-	/**
-	 * Prints out all items in the Archive. 
-	 * Used for testing only.
-	 */
-	public void printLibrary() {
-		for (Item item : this.getLibrary() ) {
-			item.printItem();
-		}
-	}
 }

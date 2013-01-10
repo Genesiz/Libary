@@ -22,6 +22,10 @@ public class TextParser {
 		this.scanner = scanner;
 	}
 	
+	/**
+	 * Doesn't not support titles with whitespace.
+	 * @return
+	 */
 	public ArrayList<Item> getItems() {
 		list = new ArrayList<Item>();
 		while (scanner.hasNextLine()) {

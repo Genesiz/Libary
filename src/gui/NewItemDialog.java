@@ -25,8 +25,9 @@ public class NewItemDialog extends JDialog implements ActionListener {
 	JTextField jtfLength;
 	JComboBox<String> jcbType;
 	
-	public NewItemDialog() {
-		//super(frame, moda); 
+	public NewItemDialog(JFrame frame) {
+		super(frame, true); 
+		this.setLocationRelativeTo(frame);
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
 		
@@ -38,12 +39,12 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
-	     jtfTitle = new JTextField();
-		 jtfAuthor = new JTextField();
-		 jtfGenre = new JTextField();
-		 jtfRating = new JTextField();
-		 jtfLength = new JTextField();
-		 jcbType = new JComboBox<String>();
+	    jtfTitle = new JTextField();
+		jtfAuthor = new JTextField();
+		jtfGenre = new JTextField();
+		jtfRating = new JTextField();
+		jtfLength = new JTextField();
+		jcbType = new JComboBox<String>();
 		jcbType.addItem("Book");
 		jcbType.addItem("Music");
 		
@@ -128,6 +129,7 @@ public class NewItemDialog extends JDialog implements ActionListener {
 				else 
 					Archive.library.addItem(new Book(title, author, length,
 							genre, rating, ItemType.BOOK));
+				ListPanel.updateList();
 			} 
 			catch (IllegalItemException e) {
 				// do statusbar ?

@@ -1,5 +1,6 @@
 package io;
 
+import gui.ListPanel;
 import items.Item;
 
 import java.io.File;
@@ -10,6 +11,10 @@ import library.Archive;
 
 public class Load {
 		
+	/**
+	 * Loads a file uses text parse to make it to items.
+	 * @param filename
+	 */
 	public  Load (String filename) {
 		try {
 			
@@ -18,6 +23,7 @@ public class Load {
 			for (Item item : textParser.getItems()) {
 				Archive.library.addItem(item);
 			}
+			ListPanel.updateList();
 			
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();

@@ -12,10 +12,11 @@ import javax.swing.*;
 import library.Archive.ItemInfo;
 import library.Search;
 
-public class Mainframe extends JFrame {
+public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public static MainFrame frame = new MainFrame();
 	private JRadioButton jrbTitle;
 	private JRadioButton jrbAuthor;
 	private JRadioButton jrbGenre;
@@ -28,7 +29,7 @@ public class Mainframe extends JFrame {
 
 	private JPanel contentPane;
 	
-	public Mainframe(){
+	private MainFrame(){
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
 		 JPanel p3 = new ListPanel();
@@ -63,7 +64,7 @@ public class Mainframe extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new NewItemDialog();
+				new NewItemDialog(frame);
 			}
 			 
 		 });
@@ -118,30 +119,25 @@ public class Mainframe extends JFrame {
 				switch (this.getSelectedButtonText(group)) {
 				case "Title" : {
 					Item[] itemList = search.find(input, ItemInfo.TITLE);
-					String[] array = search.toStringArray(itemList, ItemInfo.TITLE);
-					ListPanel.updateList(array);
+					ListPanel.updateList(itemList);
 					break;
 				}
 				case "Author" : {
 					Item[] itemList = search.find(input, ItemInfo.AUTHOR);
-					String[] array = search.toStringArray(itemList, ItemInfo.AUTHOR);
-					ListPanel.updateList(array);
+					ListPanel.updateList(itemList);
 					break;
 				}
 				
 				case "Genre" : {
 					Item[] itemList = search.find(input, ItemInfo.GENRE);
-					String[] array = search.toStringArray(itemList, ItemInfo.GENRE);
-					ListPanel.updateList(array);
+					ListPanel.updateList(itemList);
 					break;
 				}
 
-				case "Rating" : {
+				case "Rating" : 
 					Item[] itemList = search.find(input, ItemInfo.RATING);
-					String[] array = search.toStringArray(itemList, ItemInfo.RATING);
-					ListPanel.updateList(array);
+					ListPanel.updateList(itemList);
 					break;
-				}
 				
 				default : System.out.println("No search criteria!"); break;
 				}
