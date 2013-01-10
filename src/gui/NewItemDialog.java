@@ -1,6 +1,6 @@
 package gui;
 
-import items.Books;
+import items.Book;
 import items.IllegalItemException;
 import items.Item.ItemType;
 import items.Music;
@@ -15,8 +15,9 @@ import javax.swing.*;
 
 import library.Archive;
 
-public class NewItemDialog extends JDialog implements ActionListener {
+public class NewItemDialog extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
 	JTextField jtfTitle;
 	JTextField jtfAuthor;
 	JTextField jtfGenre;
@@ -24,11 +25,15 @@ public class NewItemDialog extends JDialog implements ActionListener {
 	JTextField jtfLength;
 	JComboBox<String> jcbType;
 	
-	public NewItemDialog() {
-		//super(frame, moda); 
+	/**
+	 * Constructor for a JDialog for adding new Item to Archive
+	 * @param frame mainFrame of the program.
+	 */
+	public NewItemDialog(JFrame frame) {
+		super(frame, true); 
+		this.setLocationRelativeTo(frame);
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
-		
 		
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
@@ -37,12 +42,12 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
-	     jtfTitle = new JTextField();
-		 jtfAuthor = new JTextField();
-		 jtfGenre = new JTextField();
-		 jtfRating = new JTextField();
-		 jtfLength = new JTextField();
-		 jcbType = new JComboBox<String>();
+	    jtfTitle = new JTextField();
+		jtfAuthor = new JTextField();
+		jtfGenre = new JTextField();
+		jtfRating = new JTextField();
+		jtfLength = new JTextField();
+		jcbType = new JComboBox<String>();
 		jcbType.addItem("Book");
 		jcbType.addItem("Music");
 		
@@ -53,7 +58,14 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		JButton jbAdd = new JButton("Add");
 		JButton jbClose = new JButton("Close");
 		jbAdd.addActionListener(new AddButtonListener());
-		jbClose.addActionListener(this);
+		jbClose.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+			
+		});
 		
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
@@ -70,6 +82,7 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		
 		p2.add(jbAdd);
 		p2.add(jbClose);
+		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
 		
@@ -77,9 +90,13 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
-		this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(frame);
 			
 	}
+	/**
+	 * Listener for AddButton, adds new Item to Archive on
+	 * click.
+	 */
 	class AddButtonListener implements ActionListener{
 
 		private String title;
@@ -125,8 +142,9 @@ public class NewItemDialog extends JDialog implements ActionListener {
 							genre, rating, ItemType.MUSIC));
 				
 				else 
-					Archive.library.addItem(new Books(title, author, length,
+					Archive.library.addItem(new Book(title, author, length,
 							genre, rating, ItemType.BOOK));
+				ListPanel.updateList();
 			} 
 			catch (IllegalItemException e) {
 				// do statusbar ?
@@ -140,12 +158,4 @@ public class NewItemDialog extends JDialog implements ActionListener {
 			
 		}
 	}
-	/**
-	 * Controls the close button.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.dispose();	
-	}
-	
 }
