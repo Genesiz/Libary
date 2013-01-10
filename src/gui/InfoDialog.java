@@ -19,7 +19,7 @@ public class InfoDialog extends JDialog {
 	 * @param item a non null Item
 	 * @param index in Archive.getLibrary for delete button
 	 */
-	public InfoDialog(MainFrame frame, Item item, final int index) {
+	public InfoDialog(MainFrame frame, final Item item) {
 		super(frame, true);
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
@@ -46,9 +46,7 @@ public class InfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Size of archive" + Archive.library.getLibrary().size());
-				System.out.println("removing index#: " + index);
-				Archive.library.getLibrary().remove(index);
+				Archive.library.getLibrary().remove(item);
 				ListPanel.updateList();
 				dispose();
 			}

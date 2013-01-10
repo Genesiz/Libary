@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	public static MainFrame frame = new MainFrame();
+	
 	private JRadioButton jrbTitle;
 	private JRadioButton jrbAuthor;
 	private JRadioButton jrbGenre;

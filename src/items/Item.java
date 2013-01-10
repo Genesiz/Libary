@@ -18,7 +18,7 @@ public abstract class Item {
 	}
 	
 	public enum ItemInfo {
-		TITLE, AUTHOR, GENRE, RATING
+		TITLE, AUTHOR, GENRE, RATING, TYPE, LENGTH
 	}
 	
 	public static String[] columnNames = {"Title", "Author", "Genre",
@@ -31,7 +31,7 @@ public abstract class Item {
 	public abstract int getRating();
 	public abstract ItemType getType();
 	public abstract void printItem();
-	
+		
 	public boolean equals(Object other) {
 		Item o = (Item) other;
 		return this.getAuthor().equals(o.getAuthor())

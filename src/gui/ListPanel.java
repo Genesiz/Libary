@@ -1,7 +1,10 @@
 package gui;
 
+import java.util.Comparator;
+
 import items.IllegalItemException;
 import items.Item;
+import items.Item.ItemInfo;
 import items.Item.ItemType;
 import items.Music;
 
@@ -12,14 +15,17 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.RowSorterEvent;
+import javax.swing.event.RowSorterListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import library.Archive;
 
 public class ListPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	private static JTable jlSearchResult;
+	private static JTable table;
 	private JScrollPane scrollPane;
 	private static DefaultTableModel model;
 
@@ -33,24 +39,45 @@ public class ListPanel extends JPanel {
 			public boolean isCellEditable(int row,int cols) {
 		    	   return false;
 		    }
+
 		};
 		int columns = Archive.library.getInfoNames().length;
 		model.setColumnCount(columns);
 		model.setRowCount(Archive.library.getLibrary().size());
 		
 		JLabel jLabel = new JLabel("Search result:");
-		jlSearchResult = new JTable(model);
-		jlSearchResult.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
-		jlSearchResult.getColumnModel().getColumn(columns - 2).setPreferredWidth(10);
-		jlSearchResult.getColumnModel().getColumn(columns - 3).setPreferredWidth(10);
-
+		table = new JTable(model);
+		table.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
+		table.getColumnModel().getColumn(columns - 2).setPreferredWidth(10);
+		table.getColumnModel().getColumn(columns - 3).setPreferredWidth(10);
+		table.getTableHeader().setReorderingAllowed(false);
 		
-		ListSelectionModel selectionModel = jlSearchResult.getSelectionModel();  
+		TableRowSorter<DefaultTableModel> sorter 
+	    = new TableRowSorter<DefaultTableModel>(model);
+		
+        sorter.addRowSorterListener(
+                new RowSorterListener() {
+
+                    @Override
+                    public void sorterChanged(RowSorterEvent e) {
+                        if (e.getType() == RowSorterEvent.Type.SORTED) {
+                        	System.out.println("Sort");
+                        	Archive.library.sort(table.getSelectedColumn());
+                        	updateList();
+                        }
+                    }
+                });
+		
+		table.setRowSorter(sorter);
+		
+	
+		ListSelectionModel selectionModel = table.getSelectionModel();  
         selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  
         selectionModel.addListSelectionListener(new RowListener()); 
-		scrollPane = new JScrollPane(jlSearchResult);
+
+		scrollPane = new JScrollPane(table);
 		this.add(jLabel);
-		jlSearchResult.setToolTipText("Click to see more info");
+		table.setToolTipText("Click to see more info");
 	    this.add(scrollPane);
 	}
 	
@@ -71,7 +98,7 @@ public class ListPanel extends JPanel {
 			model.setValueAt(item.getType(), i, 5);
 
 		}	
-		jlSearchResult.setModel(model);
+		table.setModel(model);
 	}
 	
 	/**
@@ -92,7 +119,7 @@ public class ListPanel extends JPanel {
 			model.setValueAt(item.getRating(), i, 4);
 			model.setValueAt(item.getType(), i, 5);
 		}
-		jlSearchResult.setModel(model);
+		table.setModel(model);
 		}
 	}
 	
@@ -101,19 +128,17 @@ public class ListPanel extends JPanel {
 	 * Opens a new InfoDialog on click.
 	 */
 	class RowListener implements ListSelectionListener {
-
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
-			int select = jlSearchResult.getSelectedRow();
+			int select = table.getSelectedRow();
 			if (select != -1) {
-				System.out.println("Row selected: " + select);
 				Item item = null;
-				String title = (String) jlSearchResult.getValueAt(select, 0);
-				String author = (String) jlSearchResult.getValueAt(select, 1);
-				String genre = (String) jlSearchResult.getValueAt(select, 2);
-				double length = (double) jlSearchResult.getValueAt(select, 3);
-				int rating = (int) jlSearchResult.getValueAt(select, 4);
-				ItemType type = (ItemType) jlSearchResult.getValueAt(select, 5);
+				String title = (String) table.getValueAt(select, 0);
+				String author = (String) table.getValueAt(select, 1);
+				String genre = (String) table.getValueAt(select, 2);
+				double length = (double) table.getValueAt(select, 3);
+				int rating = (int) table.getValueAt(select, 4);
+				ItemType type = (ItemType) table.getValueAt(select, 5);
 				try {
 					switch (type) {
 					case BOOK:
@@ -131,12 +156,11 @@ public class ListPanel extends JPanel {
 				}
 				catch (IllegalItemException e) {
 						e.printStackTrace();
-					}
-				int index = Archive.library.getIndexOf(item);
-				if (item != null && index != -1) {
-					new InfoDialog(MainFrame.frame, item, index);
 				}
+				if (item != null) {
+					new InfoDialog(MainFrame.frame, item);
+				}
+			}
 		}
-	}
 	}
 }

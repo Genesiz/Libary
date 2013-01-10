@@ -1,7 +1,11 @@
 package library;
 
 import items.Item;
+import items.Item.ItemInfo;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Archive {
 	
@@ -57,5 +61,42 @@ public class Archive {
 	public String[] getInfoNames() {
 		return Item.columnNames;
 		
+	}
+	
+	public void sort(final int i) {
+		Collections.sort(this.getLibrary(), new Comparator<Item>() {
+
+			@Override
+			public int compare(Item arg0, Item arg1) {
+				
+				switch (i) {
+				case 1:
+					return arg0.getAuthor().compareTo(arg1.getAuthor());
+				case 2:
+					return arg0.getGenre().compareTo(arg1.getGenre());
+				case 4:
+					if (arg0.getRating() == arg1.getRating())
+						return 0;
+					else if (arg0.getRating() < arg1.getRating())
+						return arg0.getRating();
+					else 
+						return arg1.getRating();
+				case 0:
+					return arg0.getTitle().compareTo(arg1.getTitle());
+				case 5:
+					return arg0.getType().compareTo(arg1.getType());
+				case 3: 
+					if (arg0.getLength() == arg1.getLength())
+						return 0;
+					else if (arg0.getLength() < arg1.getLength())
+						return (int) arg0.getLength();
+					else 
+						return (int) arg1.getLength();
+				default:
+					return 0;	
+				}
+				
+			}
+		});
 	}
 }
