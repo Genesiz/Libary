@@ -45,6 +45,15 @@ public class Archive {
 		return null;
 	}
 	
+	public int getIndexOf (Item item) {
+		return this.getLibrary().indexOf(item);
+	}
+	
+	
+	/**
+	 * Used for JTable
+	 * @return a String[] of column names
+	 */
 	public String[] getInfoNames() {
 		return Item.columnNames;
 		

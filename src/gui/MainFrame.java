@@ -123,7 +123,8 @@ public class MainFrame extends JFrame {
 
 			switch (this.getSelectedButtonText(group)) {
 			case "Title" : {
-				Item[] itemList = search.find(input, ItemInfo.TITLE);					ListPanel.updateList(itemList);
+				Item[] itemList = search.find(input, ItemInfo.TITLE);					
+				ListPanel.updateList(itemList);
 				break;
 			}
 			case "Author" : {

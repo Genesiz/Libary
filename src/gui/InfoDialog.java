@@ -46,6 +46,8 @@ public class InfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Size of archive" + Archive.library.getLibrary().size());
+				System.out.println("removing index#: " + index);
 				Archive.library.getLibrary().remove(index);
 				ListPanel.updateList();
 				dispose();

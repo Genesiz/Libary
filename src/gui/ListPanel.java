@@ -1,6 +1,9 @@
 package gui;
 
+import items.IllegalItemException;
 import items.Item;
+import items.Item.ItemType;
+import items.Music;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,7 +42,9 @@ public class ListPanel extends JPanel {
 		jlSearchResult = new JTable(model);
 		jlSearchResult.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
 		jlSearchResult.getColumnModel().getColumn(columns - 2).setPreferredWidth(10);
+		jlSearchResult.getColumnModel().getColumn(columns - 3).setPreferredWidth(10);
 
+		
 		ListSelectionModel selectionModel = jlSearchResult.getSelectionModel();  
         selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  
         selectionModel.addListSelectionListener(new RowListener()); 
@@ -55,7 +60,7 @@ public class ListPanel extends JPanel {
 	public static void updateList() {
 		int size = Archive.library.getLibrary().size();
 		model.setRowCount(size);
-		
+
 		for (int i = 0; i < size; i++) {
 			Item item = Archive.library.getItemAt(i);
 			model.setValueAt(item.getTitle(), i, 0);
@@ -63,9 +68,10 @@ public class ListPanel extends JPanel {
 			model.setValueAt(item.getGenre(), i, 2);
 			model.setValueAt(item.getLength(), i, 3);
 			model.setValueAt(item.getRating(), i, 4);
+			model.setValueAt(item.getType(), i, 5);
+
 		}	
 		jlSearchResult.setModel(model);
-
 	}
 	
 	/**
@@ -76,7 +82,7 @@ public class ListPanel extends JPanel {
 	public static void updateList(Item[] array) {
 		int size = array.length;
 		model.setRowCount(size);
-
+		if (size != 0) {
 		for (int i = 0; i < size; i++) {
 			Item item = array[i];
 			model.setValueAt(item.getTitle(), i, 0);
@@ -84,8 +90,10 @@ public class ListPanel extends JPanel {
 			model.setValueAt(item.getGenre(), i, 2);
 			model.setValueAt(item.getLength(), i, 3);
 			model.setValueAt(item.getRating(), i, 4);
+			model.setValueAt(item.getType(), i, 5);
 		}
 		jlSearchResult.setModel(model);
+		}
 	}
 	
 	/**
@@ -96,15 +104,39 @@ public class ListPanel extends JPanel {
 
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
-			if (arg0.getValueIsAdjusting()) {
-				int index = jlSearchResult.getSelectedRow();
-				if (index != -1) {
-					Item item = Archive.library.getItemAt(index);
+			int select = jlSearchResult.getSelectedRow();
+			if (select != -1) {
+				System.out.println("Row selected: " + select);
+				Item item = null;
+				String title = (String) jlSearchResult.getValueAt(select, 0);
+				String author = (String) jlSearchResult.getValueAt(select, 1);
+				String genre = (String) jlSearchResult.getValueAt(select, 2);
+				double length = (double) jlSearchResult.getValueAt(select, 3);
+				int rating = (int) jlSearchResult.getValueAt(select, 4);
+				ItemType type = (ItemType) jlSearchResult.getValueAt(select, 5);
+				try {
+					switch (type) {
+					case BOOK:
+						item = new Music(title, author, length, 
+								genre, rating, Item.ItemType.BOOK);
+						break;
+					case MUSIC:
+						item = new Music(title, author, length, genre,
+								rating, Item.ItemType.MUSIC);
+						break;
+					default:
+						System.out.println("Missing type?");
+						break;
+					}	
+				}
+				catch (IllegalItemException e) {
+						e.printStackTrace();
+					}
+				int index = Archive.library.getIndexOf(item);
+				if (item != null && index != -1) {
 					new InfoDialog(MainFrame.frame, item, index);
 				}
-			} 
 		}
-		
 	}
-
+	}
 }
