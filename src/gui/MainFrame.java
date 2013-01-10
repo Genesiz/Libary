@@ -13,9 +13,9 @@ import javax.swing.*;
 import library.Search;
 
 public class MainFrame extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public static MainFrame frame = new MainFrame();
 	
 	private JRadioButton jrbTitle;
@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 	private ButtonGroup group;
 
 	private JPanel contentPane;
-	
+
 	/**
 	 *  Creates the main frame and adds two JPanels and a ListPanel
 	 */
@@ -37,12 +37,12 @@ public class MainFrame extends JFrame {
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
 		 JPanel p3 = new ListPanel();
-		 
+
 		 p1.setLayout(new FlowLayout());
 		 p2.setLayout(new FlowLayout());
 		 p3.setLayout(new FlowLayout());
 
-		 
+
 		 jbtNew = new JButton("Add new");
 		 jlSearch = new JLabel("Search:");
 		 jtfSearch = new JTextField(10);
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
 		 jrbGenre = new JRadioButton("Genre");
 		 jrbLength = new JRadioButton("Length");
 		 jrbRating = new JRadioButton("Rating");
-		 
+
 		 group = new ButtonGroup();
 		 group.add(jrbTitle);
 		 group.add(jrbAuthor);
@@ -63,19 +63,19 @@ public class MainFrame extends JFrame {
 		 group.add(jrbRating);
 
 		 jtfSearch.addActionListener(new SearchListener());
-		 		 	
+
 		 jbtNew.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				new NewItemDialog(frame);
 			}
-			 
+
 		 });
 		 p1.add(jbtNew);
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
-		 
+
 		 p2.add(jrbTitle);
 		 p2.add(jrbAuthor);
 		 p2.add(jrbGenre);
@@ -83,7 +83,7 @@ public class MainFrame extends JFrame {
 		 jrbLength.setVisible(false);
 		 p2.add(jrbLength);
 		 p2.add(jrbRating);
-		 
+
 		 contentPane = new JPanel();
 		 FlowLayout layout = new FlowLayout();
 		 layout.setAlignment(FlowLayout.TRAILING);
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
 		 contentPane.add(p1 );
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
-		 
+
 		 this.setContentPane(contentPane);
 		 this.pack();
 		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -99,12 +99,12 @@ public class MainFrame extends JFrame {
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
 	}	
-	
+
 	/**
 	 * Listener for the search button.
 	 */
 	class SearchListener implements ActionListener {
-					
+
 		public String getSelectedButtonText(ButtonGroup buttonGroup) {
 			for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); 
 					buttons.hasMoreElements();) {
@@ -116,7 +116,7 @@ public class MainFrame extends JFrame {
 		    }
 		    return null;
 		}
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String input = jtfSearch.getText();

@@ -1,8 +1,11 @@
 package gui;
 
+
+import items.Item;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 import items.Item;
 import javax.swing.*;
@@ -41,7 +44,9 @@ public class InfoDialog extends JDialog {
 		JLabel jlRating = new JLabel("Rating: " + item.getRating());
 		JButton jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
+
 		
+
 		jbDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -52,6 +57,7 @@ public class InfoDialog extends JDialog {
 			}
 			
 		});
+
 		
 		jbCancel.addActionListener(new ActionListener() {
 
