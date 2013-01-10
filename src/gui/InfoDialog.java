@@ -3,11 +3,16 @@ package gui;
 
 import items.Item;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 
-import items.Item;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import library.Archive;
@@ -15,6 +20,9 @@ import library.Archive;
 public class InfoDialog extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
+	private Image image;
+	private JLabel jlRating;
+	private Item item;
 	
 	/**
 	 * Makes a JDialog that show an Item and delete button
@@ -24,6 +32,7 @@ public class InfoDialog extends JDialog {
 	 */
 	public InfoDialog(MainFrame frame, final Item item) {
 		super(frame, true);
+		this.item = item;
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
 		p.setToolTipText("Item info");
@@ -40,12 +49,19 @@ public class InfoDialog extends JDialog {
 			jlLength = new JLabel("Pages: " + item.getLength());
 			break;		
 		}
-
-		JLabel jlRating = new JLabel("Rating: " + item.getRating());
+		
 		JButton jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
+		try {
+			URL url = new URL("http://www.clker.com/cliparts/f/9/8/1/121618" +
+					"1106356570529jean_victor_balin_icon_star.svg.med.png");
+			image = ImageIO.read(url);
+		} 
+		catch (IOException e) {
+			System.out.println("wrong");
+		}
 
-		
+		jlRating = new JLabel("Rating: " + item.getRating());
 
 		jbDelete.addActionListener(new ActionListener() {
 
@@ -96,5 +112,16 @@ public class InfoDialog extends JDialog {
 		this.setLocationRelativeTo(frame);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+		int size = 15;
+	    int space = size + 2;
+		for (int i = 1; i <= item.getRating() ; i++) {
+			g.drawImage(image, (jlRating.getWidth() - 5) 
+	       		+ (i * space), (this.getHeight() - jlRating.getY() + 3),
+	       		size, size, null); 
+		}  
 	}
 }

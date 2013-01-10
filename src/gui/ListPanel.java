@@ -1,10 +1,7 @@
 package gui;
 
-import java.util.Comparator;
-
 import items.IllegalItemException;
 import items.Item;
-import items.Item.ItemInfo;
 import items.Item.ItemType;
 import items.Music;
 

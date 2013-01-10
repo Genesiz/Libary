@@ -1,7 +1,6 @@
 package library;
 
 import items.Item;
-import items.Item.ItemInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
