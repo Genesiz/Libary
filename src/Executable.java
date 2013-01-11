@@ -14,11 +14,6 @@ public class Executable {
 		try {
 			testing = new Book("50 shades of grey", "Joe", 
 					300, "Porno", 4, ItemType.BOOK);
-		} catch (IllegalItemException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			local.addItem(new Book("Lorte Sang", "Bjarne", 
 					2.42, "Classic", 1, ItemType.MUSIC));
 			local.addItem(new Book("God bog", "Mr. Awesome", 

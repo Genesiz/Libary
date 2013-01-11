@@ -1,10 +1,15 @@
 package gui;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+
 import items.IllegalItemException;
 import items.Item;
 import items.Item.ItemType;
 import items.Music;
 
+import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,7 +21,6 @@ import javax.swing.event.RowSorterEvent;
 import javax.swing.event.RowSorterListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
 import library.Archive;
 
 public class ListPanel extends JPanel {
@@ -24,6 +28,7 @@ public class ListPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static JTable table;
 	private JScrollPane scrollPane;
+	private BufferedImage image;
 	private static DefaultTableModel model;
 
 	/**
@@ -58,9 +63,8 @@ public class ListPanel extends JPanel {
                     @Override
                     public void sorterChanged(RowSorterEvent e) {
                         if (e.getType() == RowSorterEvent.Type.SORTED) {
-                        	System.out.println("Sort");
                         	Archive.library.sort(table.getSelectedColumn());
-                        	updateList();
+                        	//updateList();
                         }
                     }
                 });	
@@ -74,6 +78,15 @@ public class ListPanel extends JPanel {
 		this.add(jLabel);
 		table.setToolTipText("Click to see more info");
 	    this.add(scrollPane);
+	    
+		try {
+			URL url = new URL("http://www.clker.com/cliparts/f/9/8/1/121618" +
+					"1106356570529jean_victor_balin_icon_star.svg.med.png");
+			image = ImageIO.read(url);
+		} 
+		catch (IOException e) {
+			System.out.println("image not found");
+		}
 	}
 	
 	/**
@@ -91,7 +104,6 @@ public class ListPanel extends JPanel {
 			model.setValueAt(item.getLength(), i, 3);
 			model.setValueAt(item.getRating(), i, 4);
 			model.setValueAt(item.getType(), i, 5);
-
 		}	
 		table.setModel(model);
 	}
@@ -126,6 +138,7 @@ public class ListPanel extends JPanel {
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
 			int select = table.getSelectedRow();
+			
 			if (select != -1) {
 				Item item = null;
 				String title = (String) table.getValueAt(select, 0);
@@ -153,7 +166,7 @@ public class ListPanel extends JPanel {
 						e.printStackTrace();
 				}
 				if (item != null) {
-					new InfoDialog(MainFrame.frame, item);
+					new InfoDialog(MainFrame.frame, item, image);
 				}
 			}
 		}

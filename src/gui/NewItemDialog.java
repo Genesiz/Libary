@@ -31,7 +31,6 @@ public class NewItemDialog extends JDialog {
 	 */
 	public NewItemDialog(JFrame frame) {
 		super(frame, true); 
-		this.setLocationRelativeTo(frame);
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
 		
@@ -91,7 +90,6 @@ public class NewItemDialog extends JDialog {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(frame);
-			
 	}
 	/**
 	 * Listener for AddButton, adds new Item to Archive on

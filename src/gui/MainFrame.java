@@ -85,8 +85,7 @@ public class MainFrame extends JFrame {
 		 p2.add(jrbRating);
 
 		 contentPane = new JPanel();
-		 FlowLayout layout = new FlowLayout();
-		 layout.setAlignment(FlowLayout.TRAILING);
+		 FlowLayout layout = new FlowLayout(FlowLayout.TRAILING);
 		 contentPane.setLayout(layout);
 		 contentPane.add(p1 );
 		 contentPane.add(p2); 
@@ -130,7 +129,8 @@ public class MainFrame extends JFrame {
 			}
 			case "Author" : {
 				Item[] itemList = search.find(input, ItemInfo.AUTHOR);
-				ListPanel.updateList(itemList);					break;
+				ListPanel.updateList(itemList);					
+				break;
 			}	
 			case "Genre" : {
 				Item[] itemList = search.find(input, ItemInfo.GENRE);

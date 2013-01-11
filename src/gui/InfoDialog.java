@@ -29,12 +29,12 @@ public class InfoDialog extends JDialog {
 	 * @param item a non null Item
 	 * @param index in Archive.getLibrary for delete button
 	 */
-	public InfoDialog(MainFrame frame, final Item item) {
+	public InfoDialog(MainFrame frame, final Item item, Image starImg) {
 		super(frame, true);
 		this.item = item;
+		image = starImg;
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
-		p.setToolTipText("Item info");
 		JLabel jlTitle = new JLabel("Title: " + item.getTitle());
 		JLabel jlAuthor = new JLabel("Author: " + item.getAuthor());
 		JLabel jlGenre = new JLabel("Genre: " + item.getGenre());
@@ -51,14 +51,6 @@ public class InfoDialog extends JDialog {
 		
 		JButton jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
-		try {
-			URL url = new URL("http://www.clker.com/cliparts/f/9/8/1/121618" +
-					"1106356570529jean_victor_balin_icon_star.svg.med.png");
-			image = ImageIO.read(url);
-		} 
-		catch (IOException e) {
-			System.out.println("wrong");
-		}
 
 		jlRating = new JLabel("Rating: " + item.getRating());
 
@@ -92,21 +84,12 @@ public class InfoDialog extends JDialog {
 		JPanel p2 = new JPanel();
 		p2 .add(jbDelete);
 		p2.add(jbCancel);
-
+		
 		this.setLayout(new BorderLayout());
 		this.add(p, BorderLayout.PAGE_START);
 		this.add(p2, BorderLayout.PAGE_END);
+		this.setTitle(item.getType().toString());
 		this.pack();
-		
-		switch (item.getType()) {
-		case BOOK:
-			this.setTitle("Book");
-			break;
-		case MUSIC:
-			this.setTitle("Music");
-			break;		
-		}
-		
 		this.setResizable(false);
 		this.setLocationRelativeTo(frame);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
