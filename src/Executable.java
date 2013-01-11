@@ -32,7 +32,7 @@ public class Executable {
 		}
 
 		MainFrame.frame.setVisible(true);
-		new Load("test.txt");
+		new Load("test.txt", false );
 	}
 	
 

@@ -63,11 +63,9 @@ public class ListPanel extends JPanel {
                         	updateList();
                         }
                     }
-                });
-		
+                });	
 		table.setRowSorter(sorter);
 		
-	
 		ListSelectionModel selectionModel = table.getSelectionModel();  
         selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  
         selectionModel.addListSelectionListener(new RowListener()); 
