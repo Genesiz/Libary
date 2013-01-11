@@ -2,11 +2,9 @@ package io;
 
 import gui.ListPanel;
 import items.Item;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import library.Archive;
 
 public class Load {
@@ -18,7 +16,6 @@ public class Load {
 	 */
 	public  Load (String filename, boolean duplications) {
 		try {
-			
 			Scanner scan = new Scanner(new File(filename));
 			TextParser textParser = new TextParser(scan);
 			for (Item item : textParser.getItemList()) {

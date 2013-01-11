@@ -39,7 +39,7 @@ public class TextParser {
 				String author = line[2];
 				String genre = line[3];
 				double length = Double.parseDouble(line[4]);
-				int rating = Integer.parseInt(line[5].replace(";", ""));
+				int rating = Integer.parseInt(line[5].replace(";", "").replace(',','.'));
 				try {	
 					switch (type) {		
 					case "MUSIC" : 

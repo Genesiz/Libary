@@ -1,6 +1,7 @@
 
 import gui.MainFrame;
 import io.Load;
+import io.Save;
 import items.Book;
 import items.IllegalItemException;
 import items.Item;
@@ -27,7 +28,9 @@ public class Executable {
 		}
 
 		MainFrame.frame.setVisible(true);
-		new Load("test.txt", false );
+		new Load("test.txt", true );
+		//new Save("save.txt");
+
 	}
 	
 
