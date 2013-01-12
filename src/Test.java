@@ -4,13 +4,13 @@ import javax.swing.JFrame;
 
 import saad.Load;
 
-import gui.Mainframe;
-import items.Books;
+import gui.MainFrame;
+import items.Book;
 import items.IllegalItemException;
 import items.Item;
 import items.Item.ItemType;
 import library.Archive;
-import library.AuthorList;
+
 import library.Search;
 
 
