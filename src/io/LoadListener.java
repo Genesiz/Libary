@@ -1,5 +1,7 @@
 package io;
 
+import gui.MainFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,11 +15,10 @@ public class LoadListener extends JFileChooser implements ActionListener  {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("LIB file ", "lib");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("LIB file", "lib");
 		this.setFileFilter(filter);
-		int returnVal = this.showOpenDialog(null);
+		int returnVal = this.showOpenDialog(MainFrame.frame);
 		if (returnVal == JFileChooser.APPROVE_OPTION)
 			new Load(this.getSelectedFile().getAbsolutePath(), false);
 	}
-
 }

@@ -16,7 +16,6 @@ public class SaveListener extends JFileChooser implements ActionListener {
 	public SaveListener() {
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("LIB file", "lib");
