@@ -104,7 +104,7 @@ public class Archive {
 		});
 	}
 	
-	public boolean getSaved() {
+	public boolean isSaved() {
 		return saved;
 	}
 	
