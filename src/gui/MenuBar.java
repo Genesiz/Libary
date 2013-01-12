@@ -1,6 +1,7 @@
 package gui;
 
 import io.LoadListener;
+import io.SaveListener;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -18,7 +19,7 @@ public class MenuBar extends JMenuBar {
 		save =  new JMenuItem("Save");
 		load = new JMenuItem("Load");
 		
-	//	save.addActionListener(new SaveListener());
+		save.addActionListener(new SaveListener());
 		load.addActionListener(new LoadListener());
 		
 		menu.add(save);
