@@ -1,5 +1,7 @@
 package items;
 
+import java.text.DecimalFormat;
+
 public abstract class Item {
 	
 	public enum ItemType {
@@ -8,17 +10,17 @@ public abstract class Item {
 		public String toString() {
 			switch (this) {
 			case BOOK:
-				return "Book";
+				return "BOOK";
 			case MUSIC:
-				return "Music";
+				return "MUSIC";
 			default:
-				return "Unknown";
+				return "UNKNOWN";
 			}			
 		}
 	}
 	
 	public enum ItemInfo {
-		TITLE, AUTHOR, GENRE, RATING
+		TITLE, AUTHOR, GENRE, RATING, TYPE, LENGTH
 	}
 	
 	public static String[] columnNames = {"Title", "Author", "Genre",
@@ -31,7 +33,7 @@ public abstract class Item {
 	public abstract int getRating();
 	public abstract ItemType getType();
 	public abstract void printItem();
-	
+		
 	public boolean equals(Object other) {
 		Item o = (Item) other;
 		return this.getAuthor().equals(o.getAuthor())
@@ -39,5 +41,11 @@ public abstract class Item {
 						&& this.getGenre().equals(o.getGenre())
 						&& this.getRating() == o.getRating()
 						&& this.getLength() == o.getLength();
+	}
+	
+	public String formatToFile() {
+		String format = new DecimalFormat("#.##").format(this.getLength());
+		return String.format("%s; %s; %s; %s; %s; %d;", this.getType().toString(), this.getTitle(), this.getAuthor(), this.getGenre(), format, this.getRating());
+		
 	}
 }
