@@ -30,6 +30,5 @@ public class SaveListener implements ActionListener {
 			new Save(path);
 			Archive.library.setSaved(true);
 		}
-		else System.out.println("Wrong filetype selected");
 	}
 }

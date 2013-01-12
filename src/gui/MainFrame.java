@@ -112,10 +112,9 @@ public class MainFrame extends JFrame {
 
 		@Override
 		public void windowClosing(WindowEvent arg0) {
-			if (!Archive.library.getSaved()) {
-				JOptionPane question = new JOptionPane();
+			if (!Archive.library.isSaved()) {
 				String[] message = {"Yes" , "No"};
-				int choice = question.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
+				int choice = JOptionPane.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
 				"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 				message, message[0]);
 				if (choice == 0) 
