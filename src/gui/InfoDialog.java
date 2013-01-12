@@ -96,11 +96,15 @@ public class InfoDialog extends JDialog {
 		super.paint(g);
 		int size = jlRating.getHeight();
 	    int space = size + 2;
-	    
+	    System.out.println(String.format("Width:%d Height:%d Y:%d ThisHeight:%d ThisWidth:%d",
+	    	     jlRating.getWidth(),
+	    	     jlRating.getHeight(),
+	    	     jlRating.getY(),
+	    	     this.getHeight(),
+	    	     this.getWidth()));
 		for (int i = 1; i <= item.getRating() ; i++) {
 			int xPoint = (jlRating.getWidth() - size) + (i * space);
 			g.drawImage(image, xPoint, jlRating.getY(), size, size, null); 
- 
 		}  
 	}
 }

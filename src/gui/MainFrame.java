@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Enumeration;
 
 import javax.swing.*;
@@ -113,9 +112,8 @@ public class MainFrame extends JFrame {
 		@Override
 		public void windowClosing(WindowEvent arg0) {
 			if (!Archive.library.getSaved()) {
-				JOptionPane question = new JOptionPane();
 				String[] message = {"Yes" , "No"};
-				int choice = question.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
+				int choice = JOptionPane.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
 				"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 				message, message[0]);
 				if (choice == 0) 
