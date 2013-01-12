@@ -6,10 +6,14 @@ import items.Item.ItemInfo;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Enumeration;
 
 import javax.swing.*;
 
+import library.Archive;
 import library.Search;
 
 public class MainFrame extends JFrame {
@@ -88,10 +92,11 @@ public class MainFrame extends JFrame {
 		 contentPane = new JPanel();
 		 FlowLayout layout = new FlowLayout(FlowLayout.TRAILING);
 		 contentPane.setLayout(layout);
-		 contentPane.add(p1 );
+		 contentPane.add(p1);
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
 		
+		 this.addWindowListener(new CloseListener());
 		 this.setJMenuBar(MenuBar.instance);
 		 this.setContentPane(contentPane);
 		 this.pack();
@@ -99,7 +104,17 @@ public class MainFrame extends JFrame {
 		 this.setSize(600,500);
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
+		
 	}	
+	
+	class CloseListener extends WindowAdapter {
+
+		@Override
+		public void windowClosing(WindowEvent arg0) {
+			System.out.println("HEJEJEJEJEHEKJEH");
+			Archive.library.getInfoNames();
+		}
+	}
 
 	/**
 	 * Listener for the search button.
@@ -146,5 +161,6 @@ public class MainFrame extends JFrame {
 			}
 			jtfSearch.setText("");		
 		}		
+	
 	}
 }
