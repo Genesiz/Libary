@@ -8,6 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class LoadListener extends JFileChooser implements ActionListener  {
 
+	private static final long serialVersionUID = 1L;
 		public LoadListener(){
 			
 		}
