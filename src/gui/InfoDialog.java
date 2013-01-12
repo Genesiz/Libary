@@ -100,10 +100,12 @@ public class InfoDialog extends JDialog {
 			g.drawImage(image, (jlRating.getWidth()-size) 
 	       		+ (i * space), jlRating.getY(),
 	       		size, size, null); 
-			System.out.println(String.format("Width:%d Height:%d Y:%d",
+			System.out.println(String.format("Width:%d Height:%d Y:%d ThisHeight:%d ThisWidth:%d",
 					jlRating.getWidth(),
 					jlRating.getHeight(),
-					jlRating.getY()));
+					jlRating.getY(),
+					this.getHeight(),
+					this.getWidth()));
 					}  
 	}
 }
