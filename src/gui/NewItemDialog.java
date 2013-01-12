@@ -1,7 +1,8 @@
 package gui;
 
-import items.Books;
+import items.Book;
 import items.IllegalItemException;
+import items.Item.ItemType;
 import items.Music;
 
 
@@ -14,8 +15,9 @@ import javax.swing.*;
 
 import library.Archive;
 
-public class NewItemDialog extends JDialog implements ActionListener {
+public class NewItemDialog extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
 	JTextField jtfTitle;
 	JTextField jtfAuthor;
 	JTextField jtfGenre;
@@ -23,11 +25,14 @@ public class NewItemDialog extends JDialog implements ActionListener {
 	JTextField jtfLength;
 	JComboBox<String> jcbType;
 	
-	public NewItemDialog() {
-		//super(frame, moda); 
+	/**
+	 * Constructor for a JDialog for adding new Item to Archive
+	 * @param frame mainFrame of the program.
+	 */
+	public NewItemDialog(JFrame frame) {
+		super(frame, true); 
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
-		
 		
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
@@ -36,12 +41,12 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
-	     jtfTitle = new JTextField();
-		 jtfAuthor = new JTextField();
-		 jtfGenre = new JTextField();
-		 jtfRating = new JTextField();
-		 jtfLength = new JTextField();
-		 jcbType = new JComboBox<String>();
+	    jtfTitle = new JTextField();
+		jtfAuthor = new JTextField();
+		jtfGenre = new JTextField();
+		jtfRating = new JTextField();
+		jtfLength = new JTextField();
+		jcbType = new JComboBox<String>();
 		jcbType.addItem("Book");
 		jcbType.addItem("Music");
 		
@@ -52,7 +57,14 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		JButton jbAdd = new JButton("Add");
 		JButton jbClose = new JButton("Close");
 		jbAdd.addActionListener(new AddButtonListener());
-		jbClose.addActionListener(this);
+		jbClose.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+			
+		});
 		
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
@@ -69,6 +81,7 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		
 		p2.add(jbAdd);
 		p2.add(jbClose);
+		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
 		
@@ -76,9 +89,12 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
-		this.setLocationRelativeTo(null);
-			
+		this.setLocationRelativeTo(frame);
 	}
+	/**
+	 * Listener for AddButton, adds new Item to Archive on
+	 * click.
+	 */
 	class AddButtonListener implements ActionListener{
 
 		private String title;
@@ -89,43 +105,47 @@ public class NewItemDialog extends JDialog implements ActionListener {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(jtfTitle.getText().isEmpty()){
+			if (jtfTitle.getText().isEmpty())
 				 title = "Unknown";
-			}
-			else title = jtfTitle.getText();
+			else
+				title = jtfTitle.getText();
 			
-			if(jtfAuthor.getText().isEmpty()){
+			if (jtfAuthor.getText().isEmpty())
 				author = "Unknown"; 
-			}
-			else author = jtfAuthor.getText();
+			else 
+				author = jtfAuthor.getText();
 			
 			try  {
-			if(jtfRating.getText().isEmpty()){
+			if (jtfRating.getText().isEmpty()) 
 				rating = 0;
-			}
-			else rating = Integer.valueOf(jtfRating.getText());
+			else 
+				rating = Integer.valueOf(jtfRating.getText());
 			
-			if(jtfLength.getText().isEmpty()){
+			if (jtfLength.getText().isEmpty())
 				length = 0.0;
-			}
-			else length = Double.valueOf(jtfLength.getText());
-			
+			else
+				length = Double.valueOf(jtfLength.getText());
 			} catch (NumberFormatException e) {
 				System.err.print("Input must be a number");
 			}
 			
-			if(jtfGenre.getText().isEmpty()){
+			if(jtfGenre.getText().isEmpty())
 				genre = "Unknown";
-			}
-			else genre = jtfGenre.getText();
+			else 
+				genre = jtfGenre.getText();
 			
-			try{
-			if (jcbType.getSelectedItem() == "Music") {
-			Archive.library.addItem(new Music(title, author, length, genre, rating, "MUSIC"));
-			}
-			else Archive.library.addItem(new Books(title, author, length, genre, rating, "BOOK"));
-			} catch (IllegalItemException e) {
+			try {
+				if (jcbType.getSelectedItem() == "Music") 
+					Archive.library.addItem(new Music(title, author, length, 
+							genre, rating, ItemType.MUSIC));
 				
+				else 
+					Archive.library.addItem(new Book(title, author, length,
+							genre, rating, ItemType.BOOK));
+				ListPanel.updateList();
+			} 
+			catch (IllegalItemException e) {
+				// do statusbar ?
 			}
 			
 			jtfTitle.setText("");
@@ -135,12 +155,5 @@ public class NewItemDialog extends JDialog implements ActionListener {
 			jtfRating.setText("");
 			
 		}
-		
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.dispose();
-		
-	}
-	
 }
