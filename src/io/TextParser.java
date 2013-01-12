@@ -18,7 +18,7 @@ public class TextParser {
 	String regularExp = types + whitespace + word + whitespace + word + whitespace +
 			word +whitespace + "([.\\d]+)"+whitespace+ "(\\d+)";
 	
-	String firstLine = ("TYPE\\s*TITLE\\s*AUTHOR\\s*GENRE\\s*LENGTH\\s*RATING");    
+	String firstLine = ("TYPE;\\s*TITLE;\\s*AUTHOR;\\s*GENRE;\\s*LENGTH;\\s*RATING;");    
 	ArrayList<Item> list;
 	
 	public TextParser(Scanner scanner) {

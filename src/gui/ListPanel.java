@@ -41,7 +41,6 @@ public class ListPanel extends JPanel {
 			public boolean isCellEditable(int row,int cols) {
 		    	   return false;
 		    }
-
 		};
 		int columns = Archive.library.getInfoNames().length;
 		model.setColumnCount(columns);
