@@ -26,4 +26,6 @@ public class MenuBar extends JMenuBar {
 		menu.add(load);
 		this.add(menu);
 	}
+	
+	
 }

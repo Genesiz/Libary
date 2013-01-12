@@ -27,6 +27,7 @@ public class Load {
 					Archive.library.addItem(item);
 			}
 			ListPanel.updateList();
+			
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}	
