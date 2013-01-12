@@ -45,7 +45,9 @@ public abstract class Item {
 	
 	public String formatToFile() {
 		String format = new DecimalFormat("#.##").format(this.getLength());
-		return String.format("%s; %s; %s; %s; %s; %d;", this.getType().toString(), this.getTitle(), this.getAuthor(), this.getGenre(), format, this.getRating());
+		return String.format("%s; %s; %s; %s; %s; %d;", 
+				this.getType().toString(), this.getTitle(), 
+				this.getAuthor(), this.getGenre(), format, this.getRating());
 		
 	}
 }
