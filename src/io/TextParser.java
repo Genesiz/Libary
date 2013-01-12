@@ -33,12 +33,12 @@ public class TextParser {
 		while (scanner.hasNextLine()) {
 			String[] line  = scanner.nextLine().split("; ");
 			
-			if (line.length == 6) {
+			if (line.length >= 6) {
 				String type = line[0];
 				String title = line[1];
 				String author = line[2];
 				String genre = line[3];
-				double length = Double.parseDouble(line[4].replace(',','.').replace(";",""));
+				double length = Double.parseDouble(line[4].replace(',','.'));
 				int rating = Integer.parseInt(line[5].replace(";", ""));
 				try {	
 					switch (type) {		

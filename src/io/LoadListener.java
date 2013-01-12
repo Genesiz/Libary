@@ -8,9 +8,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class LoadListener extends JFileChooser implements ActionListener  {
 
-		public LoadListener(){
-			
-		}
+	public LoadListener(){
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("LIB file ", "lib");

@@ -1,5 +1,7 @@
 package io;
 
+import gui.MainFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,9 +13,6 @@ public class SaveListener extends JFileChooser implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
-	JFileChooser fileSelection;
-
-	
 	public SaveListener() {
 	}
 
@@ -23,10 +22,14 @@ public class SaveListener extends JFileChooser implements ActionListener {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("LIB file", "lib");
 		this.setFileFilter(filter);
 		String path = null;
-		int returnVal = fileSelection.showSaveDialog(null);
+		int returnVal = this.showSaveDialog(MainFrame.frame);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			path = fileSelection.getName(getSelectedFile());
-			new Save(path);
+			path = this.getSelectedFile().getAbsolutePath();
+			if (path.endsWith(".lib"))
+				new Save(path);
+			else
+				new Save(path + ".lib");
+			
 		}
 		else System.out.println("Wrong filetype selected");
 	}
