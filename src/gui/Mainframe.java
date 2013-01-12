@@ -8,6 +8,8 @@ import library.RatingList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
@@ -23,7 +25,7 @@ public class Mainframe extends JFrame {
 	private JTextField jtfSearch;
 	
 
-	public Mainframe(){
+	public Mainframe() {
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
 		 JPanel p3 = new ListPanel();
@@ -222,4 +224,5 @@ public class Mainframe extends JFrame {
 			}
 			
 		}
+		
 }
