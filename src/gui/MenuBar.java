@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 public class MenuBar extends JMenuBar {
 	
+	private static final long serialVersionUID = 1L;
 	public static MenuBar instance = new MenuBar();
 	public JMenu menu;
 	public JMenuItem save; 

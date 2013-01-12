@@ -17,6 +17,7 @@ public class InfoDialog extends JDialog {
 	private Image image;
 	private JLabel jlRating;
 	private Item item;
+	private JButton jbDelete;
 	
 	/**
 	 * Makes a JDialog that show an Item and delete button
@@ -44,7 +45,7 @@ public class InfoDialog extends JDialog {
 			break;		
 		}
 		
-		JButton jbDelete = new JButton("Delete");
+		jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
 
 		jlRating = new JLabel("Rating: ");
@@ -95,17 +96,18 @@ public class InfoDialog extends JDialog {
 	public void paint(Graphics g) {
 		super.paint(g);
 		int size = jlRating.getHeight();
+		int yPoint = (size * 5) + (size / 2);
 	    int space = size + 2;
+	    System.out.println(String.format("Width:%d Height:%d Y:%d ThisHeight:%d ThisWidth:%d",
+	    	     jlRating.getWidth(),
+	    	     jlRating.getHeight(),
+	    	     jlRating.getY(),
+	    	     this.getHeight(),
+	    	     this.getWidth()));
 		for (int i = 1; i <= item.getRating() ; i++) {
-			g.drawImage(image, (jlRating.getWidth()-size) 
-	       		+ (i * space), jlRating.getY(),
-	       		size, size, null); 
-			System.out.println(String.format("Width:%d Height:%d Y:%d ThisHeight:%d ThisWidth:%d",
-					jlRating.getWidth(),
-					jlRating.getHeight(),
-					jlRating.getY(),
-					this.getHeight(),
-					this.getWidth()));
-					}  
+			int xPoint = (jlRating.getWidth() - size) + (i * space);
+			g.drawImage(image, xPoint, yPoint, size, size, null); 
+		}  
+
 	}
 }

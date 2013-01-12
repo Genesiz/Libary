@@ -2,14 +2,18 @@ package gui;
 
 import items.Book;
 import items.IllegalItemException;
+import items.Item;
 import items.Item.ItemType;
 import items.Music;
 
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
@@ -23,7 +27,7 @@ public class NewItemDialog extends JDialog {
 	JTextField jtfGenre;
 	JTextField jtfRating;
 	JTextField jtfLength;
-	JComboBox<String> jcbType;
+	JComboBox<Item.ItemType> jcbType;
 	
 	/**
 	 * Constructor for a JDialog for adding new Item to Archive
@@ -33,11 +37,16 @@ public class NewItemDialog extends JDialog {
 		super(frame, true); 
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(240, 230));
+		
+		jcbType = new JComboBox<Item.ItemType>();
+		for (Item.ItemType type : Item.ItemType.values())
+		jcbType.addItem(type);
 		
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
-		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
+		final JLabel jlLength = new JLabel(getLengthString());
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
@@ -46,9 +55,8 @@ public class NewItemDialog extends JDialog {
 		jtfGenre = new JTextField();
 		jtfRating = new JTextField();
 		jtfLength = new JTextField();
-		jcbType = new JComboBox<String>();
-		jcbType.addItem("Book");
-		jcbType.addItem("Music");
+		
+		
 		
 		JPanel p1 = new JPanel();
 		p1.setLayout(new GridLayout(6,2));
@@ -64,6 +72,17 @@ public class NewItemDialog extends JDialog {
 				dispose();
 			}
 			
+		});
+		jcbType.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				switch ((Item.ItemType) jcbType.getSelectedItem()){
+				case BOOK : jlLength.setText("Pages"); break;
+				case MUSIC : jlLength.setText("Minutes"); break;
+				default : System.err.println("No case for selected type");
+				}
+			}	
 		});
 		
 		p1.add(jlTitle);
@@ -84,13 +103,22 @@ public class NewItemDialog extends JDialog {
 		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
-		
 		this.pack();
 		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(frame);
 	}
+	
+	public String getLengthString(){
+		switch ((Item.ItemType) jcbType.getSelectedItem()){
+		case BOOK : return "Pages :";
+		case MUSIC : return "Minutes :";
+		default : System.err.println("No case for selected type");
+		}
+		return "";
+	}	
+	
 	/**
 	 * Listener for AddButton, adds new Item to Archive on
 	 * click.
