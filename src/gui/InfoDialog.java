@@ -47,7 +47,7 @@ public class InfoDialog extends JDialog {
 		JButton jbDelete = new JButton("Delete");
 		JButton jbCancel = new JButton("Cancel");
 
-		jlRating = new JLabel("Rating:");
+		jlRating = new JLabel("Rating: ");
 
 		jbDelete.addActionListener(new ActionListener() {
 
@@ -56,6 +56,7 @@ public class InfoDialog extends JDialog {
 				Archive.library.getLibrary().remove(item);
 				ListPanel.updateList();
 				dispose();
+				Archive.library.setSaved(false);
 			}
 			
 		});
@@ -96,8 +97,8 @@ public class InfoDialog extends JDialog {
 		int size = jlRating.getHeight();
 	    int space = size + 2;
 		for (int i = 1; i <= item.getRating() ; i++) {
-			g.drawImage(image, (jlRating.getWidth() - size) 
-	       		+ (i * space), (jlRating.getY()),
+			g.drawImage(image, (jlRating.getWidth()-size) 
+	       		+ (i * space), jlRating.getY(),
 	       		size, size, null); 
 			System.out.println(String.format("Width:%d Height:%d Y:%d",
 					jlRating.getWidth(),

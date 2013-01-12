@@ -75,7 +75,7 @@ public class ListPanel extends JPanel {
 
 		scrollPane = new JScrollPane(table);
 		this.add(jLabel);
-		table.setToolTipText("Click to see more info");
+		table.setToolTipText("Click for more info");
 	    this.add(scrollPane);
 	    
 		try {
