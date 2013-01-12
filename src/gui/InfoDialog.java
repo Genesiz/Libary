@@ -97,7 +97,7 @@ public class InfoDialog extends JDialog {
 	    int space = size + 2;
 		for (int i = 1; i <= item.getRating() ; i++) {
 			g.drawImage(image, (jlRating.getWidth()-size) 
-	       		+ (i * space), (this.getHeight() - jlRating.getY()),
+	       		+ (i * space), jlRating.getY(),
 	       		size, size, null); 
 		}  
 	}
