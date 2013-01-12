@@ -72,6 +72,7 @@ public class MainFrame extends JFrame {
 			}
 
 		 });
+		 
 		 p1.add(jbtNew);
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
@@ -90,7 +91,8 @@ public class MainFrame extends JFrame {
 		 contentPane.add(p1 );
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
-
+		
+		 this.setJMenuBar(MenuBar.instance);
 		 this.setContentPane(contentPane);
 		 this.pack();
 		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);

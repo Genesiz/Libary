@@ -26,7 +26,7 @@ public class TextParser {
 	}
 	
 	public ArrayList<Item> getItemList() {
-		if (scanner.findInLine(firstLine) != null) {
+		if (scanner.findInLine(firstLine) != null)		{
 			scanner.nextLine();
 		}
 		list = new ArrayList<Item>();
@@ -38,8 +38,8 @@ public class TextParser {
 				String title = line[1];
 				String author = line[2];
 				String genre = line[3];
-				double length = Double.parseDouble(line[4]);
-				int rating = Integer.parseInt(line[5].replace(";", "").replace(',','.'));
+				double length = Double.parseDouble(line[4].replace(',','.').replace(";",""));
+				int rating = Integer.parseInt(line[5].replace(";", ""));
 				try {	
 					switch (type) {		
 					case "MUSIC" : 
