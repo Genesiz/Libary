@@ -12,7 +12,8 @@ public class Archive {
 	
 	public static Archive library = new Archive();
 	
-
+	private boolean saved = true;
+	
 	/**
 	 * Constructor for Archive.
 	 * Creates an ArrayList<Item>
@@ -101,5 +102,13 @@ public class Archive {
 				
 			}
 		});
+	}
+	
+	public boolean getSaved() {
+		return saved;
+	}
+	
+	public void setSaved(boolean bool) {
+		saved = bool;
 	}
 }

@@ -2,10 +2,11 @@ package io;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import library.Archive;
 
 public class SaveListener extends JFileChooser implements ActionListener {
 	
@@ -24,6 +25,7 @@ public class SaveListener extends JFileChooser implements ActionListener {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			path = this.getSelectedFile().getAbsolutePath();
 			new Save(path);
+			Archive.library.setSaved(true);
 		}
 		else System.out.println("Wrong filetype selected");
 	}

@@ -145,7 +145,7 @@ public class NewItemDialog extends JDialog {
 				ListPanel.updateList();
 			} 
 			catch (IllegalItemException e) {
-				// do statusbar ?
+				// do statusbar?
 			}
 			
 			jtfTitle.setText("");
@@ -153,7 +153,7 @@ public class NewItemDialog extends JDialog {
 			jtfGenre.setText("");
 			jtfLength.setText("");
 			jtfRating.setText("");
-			
+			Archive.library.setSaved(false);
 		}
 	}
 }

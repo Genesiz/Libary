@@ -56,6 +56,7 @@ public class InfoDialog extends JDialog {
 				Archive.library.getLibrary().remove(item);
 				ListPanel.updateList();
 				dispose();
+				Archive.library.setSaved(false);
 			}
 			
 		});
