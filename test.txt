@@ -1,0 +1,5 @@
+TYPE; TITLE; AUTHOR; GENRE; LENGTH; RATING;   
+MUSIC; Roses; Outkast; Rap Hip; 3.0; 4;
+BOOK; Empty; Funny Guy; Fiction; 100; 4;
+MUSIC; Number; Unknown; Song; 3.0; 2;
+MUSIC; Number; Unknown; Song; 3.0; 2;
