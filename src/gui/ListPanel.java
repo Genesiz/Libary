@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -10,11 +13,11 @@ import items.Item.ItemType;
 import items.Music;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.RowSorterEvent;
@@ -46,11 +49,11 @@ public class ListPanel extends JPanel {
 		model.setColumnCount(columns);
 		model.setRowCount(Archive.library.getLibrary().size());
 		
-		JLabel jLabel = new JLabel("Search result:");
 		table = new JTable(model);
 		table.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
 		table.getColumnModel().getColumn(columns - 2).setPreferredWidth(10);
 		table.getColumnModel().getColumn(columns - 3).setPreferredWidth(10);
+
 		table.getTableHeader().setReorderingAllowed(false);
 		
 		TableRowSorter<DefaultTableModel> sorter 
@@ -74,8 +77,10 @@ public class ListPanel extends JPanel {
         selectionModel.addListSelectionListener(new RowListener()); 
 
 		scrollPane = new JScrollPane(table);
-		this.add(jLabel);
 		table.setToolTipText("Click for more info");
+		scrollPane.setPreferredSize(new Dimension(590, 400));
+		table.getParent().setBackground(Color.WHITE);
+		this.setBorder(new BevelBorder(BevelBorder.RAISED));
 	    this.add(scrollPane);
 	    
 		try {
