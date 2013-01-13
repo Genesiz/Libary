@@ -28,7 +28,7 @@ public class SaveListener implements ActionListener {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			path = chooser.getSelectedFile().getAbsolutePath();
 			new Save(path);
-			Archive.library.setSaved(true);
+			Archive.instance.setSaved(true);
 		}
 	}
 }

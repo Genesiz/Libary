@@ -9,7 +9,7 @@ import java.util.Comparator;
 public class Archive {
 	
 	private ArrayList<Item> archive;
-	public static Archive library = new Archive();
+	public static Archive instance = new Archive();
 	private boolean saved = true;
 	
 	/**

@@ -20,11 +20,11 @@ public class Load {
 			TextParser textParser = new TextParser(scan);
 			for (Item item : textParser.getItemList()) {
 				if (!duplications) {
-					if (!Archive.library.getLibrary().contains(item))
-						Archive.library.addItem(item);
+					if (!Archive.instance.getLibrary().contains(item))
+						Archive.instance.addItem(item);
 				}
 				else
-					Archive.library.addItem(item);
+					Archive.instance.addItem(item);
 			}
 			ListPanel.updateList();
 		} catch (FileNotFoundException e1) {

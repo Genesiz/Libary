@@ -3,7 +3,6 @@ package gui;
 import io.SaveListener;
 import items.Item;
 import items.Item.ItemInfo;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +19,7 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public static MainFrame frame = new MainFrame();
+	public static MainFrame instance = new MainFrame();
 	
 	private JRadioButton jrbTitle;
 	private JRadioButton jrbAuthor;
@@ -78,7 +77,7 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new NewItemDialog(frame);
+				new NewItemDialog(instance);
 			}
 
 		 });
@@ -99,7 +98,6 @@ public class MainFrame extends JFrame {
 		 contentPane.add(p1);
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
-		
 		 this.addWindowListener(new CloseListener());
 		 this.setJMenuBar(MenuBar.instance);
 		 this.setContentPane(contentPane);
@@ -108,15 +106,16 @@ public class MainFrame extends JFrame {
 		 this.setSize(600,500);
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
+		 
 	}	
 
 	class CloseListener extends WindowAdapter {
 
 		@Override
 		public void windowClosing(WindowEvent arg0) {
-			if (!Archive.library.isSaved()) {
+			if (!Archive.instance.isSaved()) {
 				String[] message = {"Yes" , "No"};
-				int choice = JOptionPane.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
+				int choice = JOptionPane.showOptionDialog(MainFrame.instance, "Do you wish to save changes before exiting?",
 				"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 				message, message[0]);
 				if (choice == 0) 

@@ -175,11 +175,11 @@ public class NewItemDialog extends JDialog {
 		
 		try {
 			if (jcbType.getSelectedItem() == "Music") 
-				Archive.library.addItem(new Music(title, author, length, 
+				Archive.instance.addItem(new Music(title, author, length, 
 						genre, rating, ItemType.MUSIC));
 			
 			else 
-				Archive.library.addItem(new Book(title, author, length,
+				Archive.instance.addItem(new Book(title, author, length,
 						genre, rating, ItemType.BOOK));
 			ListPanel.updateList();
 		} 
@@ -192,7 +192,7 @@ public class NewItemDialog extends JDialog {
 		jtfGenre.setText("");
 		jtfLength.setText("");
 		jtfRating.setText("");
-		Archive.library.setSaved(false);
+		Archive.instance.setSaved(false);
 	}
 		
 	/**

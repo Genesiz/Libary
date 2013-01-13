@@ -10,19 +10,24 @@ import java.util.Scanner;
 import java.util.regex.MatchResult;
 
 public class TextParser {
-	
+
 	private Scanner scanner;
-	String types = "(BOOK|MUSIC)";
-	String word = "(\\w+\\s*)*";
-	String whitespace = ";\\s*";
-	String regularExp = types + whitespace + word + whitespace + word + whitespace +
+	private String types = "";
+	private String word = "(\\w+\\s*)*";
+	private String whitespace = ";\\s*";
+	private String regularExp = types + whitespace + word + whitespace + word + whitespace +
 			word +whitespace + "([.\\d]+)"+whitespace+ "(\\d+)";
 	
-	String firstLine = ("TYPE;\\s*TITLE;\\s*AUTHOR;\\s*GENRE;\\s*LENGTH;\\s*RATING;");    
-	ArrayList<Item> list;
+	private String firstLine = ("TYPE;\\s*TITLE;\\s*AUTHOR;\\s*GENRE;\\s*LENGTH;\\s*RATING;");    
+	private ArrayList<Item> list;
 	
 	public TextParser(Scanner scanner) {
 		this.scanner = scanner;
+		for (Item.ItemType type : Item.ItemType.values()) {
+			types += "(" + type + ")|";
+		}
+		types = types.substring(0, types.length() - 1);
+		System.out.println(types);
 	}
 	
 	public ArrayList<Item> getItemList() {

@@ -34,11 +34,11 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (Archive.library.isSaved())
+				if (Archive.instance.isSaved())
 					System.exit(0);
 				else {
 					String[] message = {"Yes" , "No"};
-					int choice = JOptionPane.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
+					int choice = JOptionPane.showOptionDialog(MainFrame.instance, "Do you wish to save changes before exiting?",
 					"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 					message, message[0]);
 					if (choice == 0) 

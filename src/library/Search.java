@@ -21,7 +21,7 @@ public class Search {
 	 * @return Item[] of all matches
 	 */
 	public Item[] find(String keyword,ItemInfo itemInfo) {
-		ArrayList<Item> arch = Archive.library.getLibrary();
+		ArrayList<Item> arch = Archive.instance.getLibrary();
 		int count = 0;
 		int i = 0;
 
@@ -118,7 +118,7 @@ public class Search {
 	 */
 	public HashMap<Item, Integer> findHash(String keyword,ItemInfo itemInfo) {
 		
-		ArrayList<Item> arch = Archive.library.getLibrary();
+		ArrayList<Item> arch = Archive.instance.getLibrary();
 		HashMap<Item, Integer> list = new HashMap<Item, Integer>();
 		
 		switch (itemInfo) {

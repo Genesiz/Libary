@@ -159,15 +159,15 @@ public class EditItemDialog extends JDialog {
 		
 		try {
 		switch (type) {
-		case BOOK : Archive.library.setItem(new Book(title, author, length, genre, rating, type), index); break;
-		case MUSIC : Archive.library.setItem(new Music(title, author, length, genre, rating, type), index); break;
+		case BOOK : Archive.instance.setItem(new Book(title, author, length, genre, rating, type), index); break;
+		case MUSIC : Archive.instance.setItem(new Music(title, author, length, genre, rating, type), index); break;
 		}
 		}
 		catch (IllegalItemException e) {
 			System.err.println("Illegal type");
 		}
 		ListPanel.updateList();
-		Archive.library.setSaved(false);
+		Archive.instance.setSaved(false);
 		dispose();
 	}
 	/**

@@ -37,16 +37,16 @@ public class ListPanel extends JPanel {
 	 * Makes the JTable to list all Items.
 	 */
 	public ListPanel() {
-		model = new DefaultTableModel(null, Archive.library.getInfoNames()) {
+		model = new DefaultTableModel(null, Archive.instance.getInfoNames()) {
 			private static final long serialVersionUID = 1L;
 			
 			public boolean isCellEditable(int row,int cols) {
 		    	   return false;
 		    }
 		};
-		int columns = Archive.library.getInfoNames().length;
+		int columns = Archive.instance.getInfoNames().length;
 		model.setColumnCount(columns);
-		model.setRowCount(Archive.library.getLibrary().size());
+		model.setRowCount(Archive.instance.getLibrary().size());
 		
 		table = new JTable(model);
 		table.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
@@ -64,7 +64,7 @@ public class ListPanel extends JPanel {
                     @Override
                     public void sorterChanged(RowSorterEvent e) {
                         if (e.getType() == RowSorterEvent.Type.SORTED) {
-                        	Archive.library.sort(table.getSelectedColumn());
+                        	Archive.instance.sort(table.getSelectedColumn());
                         	//updateList();
                         }
                     }
@@ -96,11 +96,11 @@ public class ListPanel extends JPanel {
 	 * Updates the Model for the JTable with the Archive.getLibrary instance
 	 */
 	public static void updateList() {
-		int size = Archive.library.getLibrary().size();
+		int size = Archive.instance.getLibrary().size();
 		model.setRowCount(size);
 
 		for (int i = 0; i < size; i++) {
-			Item item = Archive.library.getItemAt(i);
+			Item item = Archive.instance.getItemAt(i);
 			model.setValueAt(item.getTitle(), i, 0);
 			model.setValueAt(item.getAuthor(), i, 1);
 			model.setValueAt(item.getGenre(), i, 2);
@@ -169,7 +169,7 @@ public class ListPanel extends JPanel {
 						e.printStackTrace();
 				}
 				if (item != null) {
-					new InfoDialog(MainFrame.frame, item, image);
+					new InfoDialog(MainFrame.instance, item, image);
 				}
 			}
 		}

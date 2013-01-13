@@ -23,7 +23,7 @@ public class Save {
 			// first line for info in the file.
 			writer.write("TYPE; TITLE; AUTHOR; GENRE; LENGTH; RATING;\n");
 			
-			for (Item item : Archive.library.getLibrary()) {
+			for (Item item : Archive.instance.getLibrary()) {
 				writer.write(item.formatToFile() + "\n");
 			}
 			writer.close();

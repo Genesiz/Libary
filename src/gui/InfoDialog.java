@@ -20,7 +20,8 @@ public class InfoDialog extends JDialog {
 	private JLabel jlTitle;
 	private JLabel jlAuthor;
 	private JLabel jlGenre;
-	private JLabel jlLength;	
+	private JLabel jlLength;
+	private boolean isWindows;
 	
 	/**
 	 * Makes a JDialog that show an Item and delete button
@@ -30,7 +31,8 @@ public class InfoDialog extends JDialog {
 	 */
 	public InfoDialog(MainFrame frame, final Item item, Image starImg) {
 		super(frame, true);
-		index = Archive.library.getIndexOf(item);
+		isWindows = System.getProperty("os.name").equals("Windows 7");	
+		index = Archive.instance.getIndexOf(item);
 		this.item = item;
 		image = starImg;
 		JPanel p = new JPanel();
@@ -40,7 +42,6 @@ public class InfoDialog extends JDialog {
 		jlGenre = new JLabel("Genre: " + item.getGenre());
 		jlLength = new JLabel("#");
 		jlRating = new JLabel("Rating: ");
-
 
 		switch (item.getType()) {
 		case BOOK:
@@ -59,10 +60,10 @@ public class InfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Archive.library.getLibrary().remove(item);
+				Archive.instance.getLibrary().remove(item);
 				ListPanel.updateList();
 				dispose();
-				Archive.library.setSaved(false);
+				Archive.instance.setSaved(false);
 			}
 		});
 		
@@ -70,8 +71,8 @@ public class InfoDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new EditItemDialog(MainFrame.frame, item, index);
 				dispose();
+				new EditItemDialog(MainFrame.instance, item, index);
 			}
 			
 		});
@@ -110,7 +111,7 @@ public class InfoDialog extends JDialog {
 		super.paint(g);
 		int size = jlRating.getHeight();
 		int yPoint;
-		if (System.getProperty("os.name").equals("Windows 7"))
+		if (isWindows )
 			yPoint = this.getHeight() - jlRating.getY();
 		else 
 			yPoint = jlRating.getY();
