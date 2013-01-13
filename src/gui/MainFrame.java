@@ -38,6 +38,7 @@ public class MainFrame extends JFrame {
 	 *  Creates the main frame and adds two JPanels and a ListPanel
 	 */
 	private MainFrame(){
+		super("Archive");
 		 JPanel p1 = new JPanel();
 		 JPanel p2 = new JPanel();
 		 JPanel p3 = new ListPanel();

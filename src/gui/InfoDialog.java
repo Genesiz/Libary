@@ -17,8 +17,8 @@ public class InfoDialog extends JDialog {
 	private Image image;
 	private JLabel jlRating;
 	private Item item;
-	private int index;
-	
+	private JButton jbDelete;
+	private int index;	
 	/**
 	 * Makes a JDialog that show an Item and delete button
 	 * @param frame the main frame of the program
@@ -109,15 +109,13 @@ public class InfoDialog extends JDialog {
 	public void paint(Graphics g) {
 		super.paint(g);
 		int size = jlRating.getHeight();
-	    int space = size + 2;
+		int yPoint = jlRating.getY();
+		int space = size + 2;
+
 		for (int i = 1; i <= item.getRating() ; i++) {
-			g.drawImage(image, (jlRating.getWidth()-size) 
-	       		+ (i * space), jlRating.getY(),
-	       		size, size, null); 
-			System.out.println(String.format("Width:%d Height:%d Y:%d",
-					jlRating.getWidth(),
-					jlRating.getHeight(),
-					jlRating.getY()));
-					}  
+			int xPoint = (jlRating.getWidth() - size) + (i * space);
+			g.drawImage(image, xPoint, yPoint, size, size, null); 
+		}  
+
 	}
 }

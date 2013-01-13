@@ -8,9 +8,12 @@ import items.Music;
 
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -26,8 +29,7 @@ public class NewItemDialog extends JDialog {
 	JTextField jtfGenre;
 	JTextField jtfRating;
 	JTextField jtfLength;
-	JComboBox<ItemType> jcbType;
-	
+	JComboBox<Item.ItemType> jcbType;
 	/**
 	 * Constructor for a JDialog for adding new Item to Archive
 	 * @param frame mainFrame of the program.
@@ -36,11 +38,19 @@ public class NewItemDialog extends JDialog {
 		super(frame, true); 
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(240, 230));
 		
+		jcbType = new JComboBox<Item.ItemType>();
+		for (Item.ItemType type : Item.ItemType.values())
+		jcbType.addItem(type);
+		
+		jcbType = new JComboBox<Item.ItemType>();
+		for (Item.ItemType type : Item.ItemType.values())
+			 jcbType.addItem(type);
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
-		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
+		final JLabel jlLength = new JLabel(getLengthString());
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
@@ -75,6 +85,17 @@ public class NewItemDialog extends JDialog {
 			}
 			
 		});
+		jcbType.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				switch ((Item.ItemType) jcbType.getSelectedItem()){
+				case BOOK : jlLength.setText("Pages"); break;
+				case MUSIC : jlLength.setText("Minutes"); break;
+				default : System.err.println("No case for selected type");
+				}
+			}	
+		});
 		
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
@@ -94,12 +115,20 @@ public class NewItemDialog extends JDialog {
 		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.SOUTH);
-		
 		this.pack();
 		this.setResizable(false);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(frame);
 		this.setVisible(true);
+	}
+
+	public String getLengthString(){
+		switch ((Item.ItemType) jcbType.getSelectedItem()){
+		case BOOK : return "Pages :";
+		case MUSIC : return "Minutes :";
+		default : System.err.println("No case for selected type");
+		}
+		return "";
 	}
 	
 	class QuickAddListener extends KeyAdapter {
