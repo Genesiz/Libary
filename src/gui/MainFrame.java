@@ -1,15 +1,19 @@
 package gui;
 
+import io.SaveListener;
 import items.Item;
 import items.Item.ItemInfo;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Enumeration;
 
 import javax.swing.*;
 
+import library.Archive;
 import library.Search;
 
 public class MainFrame extends JFrame {
@@ -30,18 +34,24 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 
+	private JPanel p1;
+
+	private JPanel p2;
+
+	private ListPanel p3;
+
 	/**
 	 *  Creates the main frame and adds two JPanels and a ListPanel
 	 */
 	private MainFrame(){
-		 JPanel p1 = new JPanel();
-		 JPanel p2 = new JPanel();
-		 JPanel p3 = new ListPanel();
+		super("Archive");
+		 p1 = new JPanel();
+		 p2 = new JPanel();
+		 p3 = new ListPanel();
 
 		 p1.setLayout(new FlowLayout());
 		 p2.setLayout(new FlowLayout());
 		 p3.setLayout(new FlowLayout());
-
 
 		 jbtNew = new JButton("Add new");
 		 jlSearch = new JLabel("Search:");
@@ -72,6 +82,7 @@ public class MainFrame extends JFrame {
 			}
 
 		 });
+		 
 		 p1.add(jbtNew);
 		 p1.add(jlSearch);
 		 p1.add(jtfSearch);
@@ -85,12 +96,12 @@ public class MainFrame extends JFrame {
 		 p2.add(jrbRating);
 
 		 contentPane = new JPanel();
-		 FlowLayout layout = new FlowLayout(FlowLayout.TRAILING);
-		 contentPane.setLayout(layout);
-		 contentPane.add(p1 );
+		 contentPane.add(p1);
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
-
+		
+		 this.addWindowListener(new CloseListener());
+		 this.setJMenuBar(MenuBar.instance);
 		 this.setContentPane(contentPane);
 		 this.pack();
 		 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -98,6 +109,21 @@ public class MainFrame extends JFrame {
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
 	}	
+
+	class CloseListener extends WindowAdapter {
+
+		@Override
+		public void windowClosing(WindowEvent arg0) {
+			if (!Archive.library.isSaved()) {
+				String[] message = {"Yes" , "No"};
+				int choice = JOptionPane.showOptionDialog(MainFrame.frame, "Do you wish to save changes before exiting?",
+				"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
+				message, message[0]);
+				if (choice == 0) 
+					SaveListener.saveState();	
+			}
+		}
+	}
 
 	/**
 	 * Listener for the search button.
@@ -144,5 +170,6 @@ public class MainFrame extends JFrame {
 			}
 			jtfSearch.setText("");		
 		}		
+	
 	}
 }

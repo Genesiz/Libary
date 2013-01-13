@@ -59,5 +59,4 @@ public class Music extends Item {
 				this.getLength(), this.getRating(), this.getType()); 		
 	}
 
-	
 }

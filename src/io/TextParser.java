@@ -18,7 +18,7 @@ public class TextParser {
 	String regularExp = types + whitespace + word + whitespace + word + whitespace +
 			word +whitespace + "([.\\d]+)"+whitespace+ "(\\d+)";
 	
-	String firstLine = ("TYPE\\s*TITLE\\s*AUTHOR\\s*GENRE\\s*LENGTH\\s*RATING");    
+	String firstLine = ("TYPE;\\s*TITLE;\\s*AUTHOR;\\s*GENRE;\\s*LENGTH;\\s*RATING;");    
 	ArrayList<Item> list;
 	
 	public TextParser(Scanner scanner) {
@@ -26,7 +26,7 @@ public class TextParser {
 	}
 	
 	public ArrayList<Item> getItemList() {
-		if (scanner.findInLine(firstLine) != null) {
+		if (scanner.findInLine(firstLine) != null)		{
 			scanner.nextLine();
 		}
 		list = new ArrayList<Item>();
@@ -38,8 +38,8 @@ public class TextParser {
 				String title = line[1];
 				String author = line[2];
 				String genre = line[3];
-				double length = Double.parseDouble(line[4]);
-				int rating = Integer.parseInt(line[5].replace(";", "").replace(',','.'));
+				double length = Double.parseDouble(line[4].replace(',','.').replace(";",""));
+				int rating = Integer.parseInt(line[5].replace(";", ""));
 				try {	
 					switch (type) {		
 					case "MUSIC" : 

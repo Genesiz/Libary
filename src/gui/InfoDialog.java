@@ -1,6 +1,5 @@
 package gui;
 
-
 import items.Item;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -8,7 +7,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 import library.Archive;
 
 public class InfoDialog extends JDialog {
@@ -17,7 +15,7 @@ public class InfoDialog extends JDialog {
 	private Image image;
 	private JLabel jlRating;
 	private Item item;
-	
+	private int index;	
 	/**
 	 * Makes a JDialog that show an Item and delete button
 	 * @param frame the main frame of the program
@@ -26,6 +24,7 @@ public class InfoDialog extends JDialog {
 	 */
 	public InfoDialog(MainFrame frame, final Item item, Image starImg) {
 		super(frame, true);
+		index = Archive.library.getIndexOf(item);
 		this.item = item;
 		image = starImg;
 		JPanel p = new JPanel();
@@ -45,10 +44,10 @@ public class InfoDialog extends JDialog {
 		}
 		
 		JButton jbDelete = new JButton("Delete");
+		JButton jbEdit   = new JButton("Edit");
 		JButton jbCancel = new JButton("Cancel");
 
-		jlRating = new JLabel("Rating: " + item.getRating());
-
+		jlRating = new JLabel("Rating:");
 		jbDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -56,10 +55,19 @@ public class InfoDialog extends JDialog {
 				Archive.library.getLibrary().remove(item);
 				ListPanel.updateList();
 				dispose();
+				Archive.library.setSaved(false);
+			}
+		});
+		
+		jbEdit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new EditItemDialog(MainFrame.frame, item, index);
+				dispose();
 			}
 			
 		});
-
 		
 		jbCancel.addActionListener(new ActionListener() {
 
@@ -67,7 +75,6 @@ public class InfoDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
-			
 		});
 		
 		p.add(jlTitle);
@@ -77,7 +84,8 @@ public class InfoDialog extends JDialog {
 		p.add(jlRating);
 		
 		JPanel p2 = new JPanel();
-		p2 .add(jbDelete);
+		p2.add(jbDelete);
+		p2.add(jbEdit);
 		p2.add(jbCancel);
 		
 		this.setLayout(new BorderLayout());
@@ -93,12 +101,13 @@ public class InfoDialog extends JDialog {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		int size = 15;
-	    int space = size + 2;
+		int size = jlRating.getHeight();
+		int yPoint = jlRating.getY();
+		int space = size + 2;
+
 		for (int i = 1; i <= item.getRating() ; i++) {
-			g.drawImage(image, (jlRating.getWidth() - 5) 
-	       		+ (i * space), (this.getHeight() - jlRating.getY() + 3),
-	       		size, size, null); 
+			int xPoint = (jlRating.getWidth() - size) + (i * space);
+			g.drawImage(image, xPoint, yPoint, size, size, null); 
 		}  
 	}
 }
