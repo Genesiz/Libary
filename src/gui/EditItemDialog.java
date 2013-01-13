@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -20,14 +22,21 @@ import library.Archive;
 public class EditItemDialog extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
-	JTextField jtfTitle;
-	JTextField jtfAuthor;
-	JTextField jtfGenre;
-	JTextField jtfRating;
-	JTextField jtfLength;
-	JComboBox<Item.ItemType> jcbType;
-	Item.ItemType type;
-	int index;
+	private JTextField jtfTitle;
+	private JTextField jtfAuthor;
+	private JTextField jtfGenre;
+	private JTextField jtfRating;
+	private JTextField jtfLength;
+	private JComboBox<Item.ItemType> jcbType;
+	private Item.ItemType type;
+	private String title;
+	private String author;
+	private String genre;
+	private int rating;
+	private double length;
+	private int index;
+	private JLabel jlLength;
+	
 	/**
 	 * Constructor for a JDialog for adding new Item to Archive
 	 * @param frame mainFrame of the program.
@@ -42,7 +51,7 @@ public class EditItemDialog extends JDialog {
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
-		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
+		jlLength = new JLabel("Length (Pages or Minutes) :");
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
 		
@@ -76,7 +85,13 @@ public class EditItemDialog extends JDialog {
 				dispose();
 			}
 		});
-		
+		jcbType.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				jlLength.setText(getLengthString());
+			}	
+		});
 		p1.add(jlTitle);
 		p1.add(jtfTitle);
 		p1.add(jlAuthor);
@@ -103,6 +118,16 @@ public class EditItemDialog extends JDialog {
 		this.setVisible(true);
 	}
 	
+	public String getLengthString(){
+		switch ((Item.ItemType) jcbType.getSelectedItem()){
+		case BOOK : return "Pages :";
+		case MUSIC : return "Minutes :";
+		default : 
+			System.err.println("No case for selected type");
+			return "";
+		}	
+	}
+	
 	class QuickSetListener extends KeyAdapter {
 
 		@Override
@@ -112,13 +137,7 @@ public class EditItemDialog extends JDialog {
 		}
 	}
 	
-	private String title;
-	private String author;
-	private String genre;
-	private int rating;
-	private double length;
-	
-	private void SetItem() {
+	private void SetItem() {	
 		if (!jtfTitle.getText().isEmpty())
 			title = jtfTitle.getText();
 			

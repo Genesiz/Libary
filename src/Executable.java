@@ -1,8 +1,5 @@
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import gui.MainFrame;
 import io.Load;
 

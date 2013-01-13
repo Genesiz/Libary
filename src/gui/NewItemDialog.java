@@ -24,12 +24,18 @@ import library.Archive;
 public class NewItemDialog extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
-	JTextField jtfTitle;
-	JTextField jtfAuthor;
-	JTextField jtfGenre;
-	JTextField jtfRating;
-	JTextField jtfLength;
-	JComboBox<Item.ItemType> jcbType;
+	private JTextField jtfTitle;
+	private JTextField jtfAuthor;
+	private JTextField jtfGenre;
+	private JTextField jtfRating;
+	private JTextField jtfLength;
+	private JComboBox<Item.ItemType> jcbType;
+	private String title;
+	private String author;
+	private String genre;
+	private int rating;
+	private double length;
+	
 	/**
 	 * Constructor for a JDialog for adding new Item to Archive
 	 * @param frame mainFrame of the program.
@@ -89,11 +95,7 @@ public class NewItemDialog extends JDialog {
 
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				switch ((Item.ItemType) jcbType.getSelectedItem()){
-				case BOOK : jlLength.setText("Pages"); break;
-				case MUSIC : jlLength.setText("Minutes"); break;
-				default : System.err.println("No case for selected type");
-				}
+				jlLength.setText(getLengthString());
 			}	
 		});
 		
@@ -126,9 +128,10 @@ public class NewItemDialog extends JDialog {
 		switch ((Item.ItemType) jcbType.getSelectedItem()){
 		case BOOK : return "Pages :";
 		case MUSIC : return "Minutes :";
-		default : System.err.println("No case for selected type");
-		}
-		return "";
+		default : 
+			System.err.println("No case for selected type");
+			return "";
+		}	
 	}
 	
 	class QuickAddListener extends KeyAdapter {
@@ -139,12 +142,6 @@ public class NewItemDialog extends JDialog {
 			AddItem();
 		}
 	}
-	
-	private String title;
-	private String author;
-	private String genre;
-	private int rating;
-	private double length;
 	
 	private void AddItem() {
 		if (jtfTitle.getText().isEmpty())
