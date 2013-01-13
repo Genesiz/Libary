@@ -14,14 +14,14 @@ public class Book extends Item {
 			this.rating = rating;
 		else 
 			throw new IllegalItemException("rating most be between 0 and 5.");
-
+	
 		this.author = author;
 		this.genre = genre;
 		this.length = length;
 		this.title = title;
 		this.type = type;
-		
 	}
+	
 	@Override
 	public String getTitle() {
 		return this.title;
@@ -58,5 +58,5 @@ public class Book extends Item {
 				this.getTitle(), this.getAuthor(), this.getGenre(),
 				this.getLength(), this.getRating(), this.getType());	
 	}
-
+	
 }

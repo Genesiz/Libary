@@ -1,3 +1,5 @@
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -8,9 +10,8 @@ public class Executable {
 	public static void main(String[] args) {
 		  try {
 	            // Set cross-platform Java L&F (also called "Metal")
-
-			  UIManager.setLookAndFeel(
-					  UIManager.getCrossPlatformLookAndFeelClassName());
+	        UIManager.setLookAndFeel(
+	            UIManager.getCrossPlatformLookAndFeelClassName());
 	    } 
 	    catch (UnsupportedLookAndFeelException e) {
 	       // handle exception
@@ -24,9 +25,7 @@ public class Executable {
 	    catch (IllegalAccessException e) {
 	       // handle exception
 	    }		
-
 		MainFrame.frame.setVisible(true);
 		new Load("lib.lib", false);
 	}	
 }
-

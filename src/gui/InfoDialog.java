@@ -18,7 +18,7 @@ public class InfoDialog extends JDialog {
 	private JLabel jlRating;
 	private Item item;
 	private JButton jbDelete;
-	
+	private int index;	
 	/**
 	 * Makes a JDialog that show an Item and delete button
 	 * @param frame the main frame of the program
@@ -27,6 +27,7 @@ public class InfoDialog extends JDialog {
 	 */
 	public InfoDialog(MainFrame frame, final Item item, Image starImg) {
 		super(frame, true);
+		index = Archive.library.getIndexOf(item);
 		this.item = item;
 		image = starImg;
 		JPanel p = new JPanel();
@@ -45,7 +46,8 @@ public class InfoDialog extends JDialog {
 			break;		
 		}
 		
-		jbDelete = new JButton("Delete");
+		JButton jbDelete = new JButton("Delete");
+		JButton jbEdit   = new JButton("Edit");
 		JButton jbCancel = new JButton("Cancel");
 
 		jlRating = new JLabel("Rating: ");
@@ -61,7 +63,17 @@ public class InfoDialog extends JDialog {
 			}
 			
 		});
+		
+		jbEdit.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new EditItemDialog(MainFrame.frame, item, index);
+				dispose();
+			}
+			
+		});
+		
 		
 		jbCancel.addActionListener(new ActionListener() {
 
@@ -79,7 +91,8 @@ public class InfoDialog extends JDialog {
 		p.add(jlRating);
 		
 		JPanel p2 = new JPanel();
-		p2 .add(jbDelete);
+		p2.add(jbDelete);
+		p2.add(jbEdit);
 		p2.add(jbCancel);
 		
 		this.setLayout(new BorderLayout());

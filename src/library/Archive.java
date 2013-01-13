@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class Archive {
 	
-	private ArrayList<Item> archieve;
+	private ArrayList<Item> archive;
 	
 	public static Archive library = new Archive();
 	
@@ -19,7 +19,7 @@ public class Archive {
 	 * Creates an ArrayList<Item>
 	 */
 	private Archive() {	
-		this.archieve = new ArrayList<Item>();
+		this.archive = new ArrayList<Item>();
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class Archive {
 	 * @param item non null Item
 	 */
 	public void addItem(Item item) {
-		this.archieve.add(item);
+		this.archive.add(item);
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class Archive {
 	 * @return ArrayList<Item>
 	 */
 	public ArrayList<Item> getLibrary() {
-		return this.archieve;
+		return this.archive;
 	}
 	
 	/**
@@ -60,7 +60,10 @@ public class Archive {
 	 */
 	public String[] getInfoNames() {
 		return Item.columnNames;
-		
+	}
+	
+	public void setItem(Item item, int index) {
+		this.getLibrary().set(index, item);
 	}
 	
 	/**
@@ -99,12 +102,11 @@ public class Archive {
 				default:
 					return 0;	
 				}
-				
 			}
 		});
 	}
 	
-	public boolean getSaved() {
+	public boolean isSaved() {
 		return saved;
 	}
 	
