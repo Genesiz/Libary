@@ -34,19 +34,24 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 
+	private JPanel p1;
+
+	private JPanel p2;
+
+	private ListPanel p3;
+
 	/**
 	 *  Creates the main frame and adds two JPanels and a ListPanel
 	 */
 	private MainFrame(){
 		super("Archive");
-		 JPanel p1 = new JPanel();
-		 JPanel p2 = new JPanel();
-		 JPanel p3 = new ListPanel();
+		 p1 = new JPanel();
+		 p2 = new JPanel();
+		 p3 = new ListPanel();
 
 		 p1.setLayout(new FlowLayout());
 		 p2.setLayout(new FlowLayout());
 		 p3.setLayout(new FlowLayout());
-
 
 		 jbtNew = new JButton("Add new");
 		 jlSearch = new JLabel("Search:");
@@ -91,8 +96,6 @@ public class MainFrame extends JFrame {
 		 p2.add(jrbRating);
 
 		 contentPane = new JPanel();
-		 FlowLayout layout = new FlowLayout(FlowLayout.TRAILING);
-		 contentPane.setLayout(layout);
 		 contentPane.add(p1);
 		 contentPane.add(p2); 
 		 contentPane.add(p3);
@@ -105,9 +108,8 @@ public class MainFrame extends JFrame {
 		 this.setSize(600,500);
 		 this.setResizable(false);
 		 this.setLocationRelativeTo(null);
-		
 	}	
-	
+
 	class CloseListener extends WindowAdapter {
 
 		@Override
@@ -118,8 +120,7 @@ public class MainFrame extends JFrame {
 				"Save changes?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 				message, message[0]);
 				if (choice == 0) 
-					SaveListener.saveState();
-				
+					SaveListener.saveState();	
 			}
 		}
 	}

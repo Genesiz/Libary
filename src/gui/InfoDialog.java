@@ -1,6 +1,5 @@
 package gui;
 
-
 import items.Item;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -8,7 +7,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 import library.Archive;
 
 public class InfoDialog extends JDialog {
@@ -17,7 +15,6 @@ public class InfoDialog extends JDialog {
 	private Image image;
 	private JLabel jlRating;
 	private Item item;
-	private JButton jbDelete;
 	private int index;	
 	/**
 	 * Makes a JDialog that show an Item and delete button
@@ -50,8 +47,7 @@ public class InfoDialog extends JDialog {
 		JButton jbEdit   = new JButton("Edit");
 		JButton jbCancel = new JButton("Cancel");
 
-		jlRating = new JLabel("Rating: ");
-
+		jlRating = new JLabel("Rating:");
 		jbDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -61,7 +57,6 @@ public class InfoDialog extends JDialog {
 				dispose();
 				Archive.library.setSaved(false);
 			}
-			
 		});
 		
 		jbEdit.addActionListener(new ActionListener() {
@@ -74,14 +69,12 @@ public class InfoDialog extends JDialog {
 			
 		});
 		
-		
 		jbCancel.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
-			
 		});
 		
 		p.add(jlTitle);
@@ -116,6 +109,5 @@ public class InfoDialog extends JDialog {
 			int xPoint = (jlRating.getWidth() - size) + (i * space);
 			g.drawImage(image, xPoint, yPoint, size, size, null); 
 		}  
-
 	}
 }
