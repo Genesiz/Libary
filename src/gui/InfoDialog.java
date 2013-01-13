@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
 import library.Archive;
 
 public class InfoDialog extends JDialog {
@@ -15,7 +16,12 @@ public class InfoDialog extends JDialog {
 	private Image image;
 	private JLabel jlRating;
 	private Item item;
-	private int index;	
+	private int index;
+	private JLabel jlTitle;
+	private JLabel jlAuthor;
+	private JLabel jlGenre;
+	private JLabel jlLength;	
+	
 	/**
 	 * Makes a JDialog that show an Item and delete button
 	 * @param frame the main frame of the program
@@ -29,10 +35,12 @@ public class InfoDialog extends JDialog {
 		image = starImg;
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
-		JLabel jlTitle = new JLabel("Title: " + item.getTitle());
-		JLabel jlAuthor = new JLabel("Author: " + item.getAuthor());
-		JLabel jlGenre = new JLabel("Genre: " + item.getGenre());
-		JLabel jlLength = new JLabel("#");
+		jlTitle = new JLabel("Title: " + item.getTitle());
+		jlAuthor = new JLabel("Author: " + item.getAuthor());
+		jlGenre = new JLabel("Genre: " + item.getGenre());
+		jlLength = new JLabel("#");
+		jlRating = new JLabel("Rating: ");
+
 
 		switch (item.getType()) {
 		case BOOK:
@@ -47,7 +55,6 @@ public class InfoDialog extends JDialog {
 		JButton jbEdit   = new JButton("Edit");
 		JButton jbCancel = new JButton("Cancel");
 
-		jlRating = new JLabel("Rating:");
 		jbDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -102,7 +109,11 @@ public class InfoDialog extends JDialog {
 	public void paint(Graphics g) {
 		super.paint(g);
 		int size = jlRating.getHeight();
-		int yPoint = jlRating.getY();
+		int yPoint;
+		if (System.getProperty("os.name").equals("Windows 7"))
+			yPoint = this.getHeight() - jlRating.getY();
+		else 
+			yPoint = jlRating.getY();
 		int space = size + 2;
 
 		for (int i = 1; i <= item.getRating() ; i++) {
