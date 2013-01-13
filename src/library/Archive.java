@@ -12,7 +12,6 @@ public class Archive {
 	
 	public static Archive library = new Archive();
 	
-
 	/**
 	 * Constructor for Archive.
 	 * Creates an ArrayList<Item>
