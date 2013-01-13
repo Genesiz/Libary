@@ -2,6 +2,7 @@ package gui;
 
 import items.Book;
 import items.IllegalItemException;
+import items.Item;
 import items.Item.ItemType;
 import items.Music;
 
@@ -23,7 +24,7 @@ public class NewItemDialog extends JDialog {
 	JTextField jtfGenre;
 	JTextField jtfRating;
 	JTextField jtfLength;
-	JComboBox<String> jcbType;
+	JComboBox<Item.ItemType> jcbType;
 	
 	/**
 	 * Constructor for a JDialog for adding new Item to Archive
@@ -34,21 +35,21 @@ public class NewItemDialog extends JDialog {
 		this.setTitle("Add new item to library");
 		this.setLayout(new BorderLayout());
 		
+		jcbType = new JComboBox<Item.ItemType>();
+		for (Item.ItemType type : Item.ItemType.values())
+			 jcbType.addItem(type);
 		JLabel jlTitle = new JLabel("Title:");
 		JLabel jlAuthor = new JLabel("Author:");
 		JLabel jlRating = new JLabel("Rating (0 - 5):");
 		JLabel jlLength = new JLabel("Length (Pages or Minutes) :");
 		JLabel jlType = new JLabel("Type:");
 		JLabel jlGenre = new JLabel("Genre:");
-		
+
 	    jtfTitle = new JTextField();
 		jtfAuthor = new JTextField();
 		jtfGenre = new JTextField();
 		jtfRating = new JTextField();
 		jtfLength = new JTextField();
-		jcbType = new JComboBox<String>();
-		jcbType.addItem("Book");
-		jcbType.addItem("Music");
 		
 		JPanel p1 = new JPanel();
 		p1.setLayout(new GridLayout(6,2));
@@ -56,14 +57,13 @@ public class NewItemDialog extends JDialog {
 		JPanel p2 = new JPanel();
 		JButton jbAdd = new JButton("Add");
 		JButton jbClose = new JButton("Close");
-		jbAdd.addActionListener(new AddButtonListener());
+		jbAdd.addActionListener(new AddListener());
 		jbClose.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-			}
-			
+			} 
 		});
 		
 		p1.add(jlTitle);
@@ -95,7 +95,7 @@ public class NewItemDialog extends JDialog {
 	 * Listener for AddButton, adds new Item to Archive on
 	 * click.
 	 */
-	class AddButtonListener implements ActionListener{
+	class AddListener implements ActionListener{
 
 		private String title;
 		private String author;
