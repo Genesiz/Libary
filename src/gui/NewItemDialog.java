@@ -122,7 +122,7 @@ public class NewItemDialog extends JDialog {
 		this.setVisible(true);
 	}
 
-	public String getLengthString(){
+	private String getLengthString(){
 		switch ((Item.ItemType) jcbType.getSelectedItem()){
 		case BOOK : return "Pages :";
 		case MUSIC : return "Minutes :";

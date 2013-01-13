@@ -46,7 +46,7 @@ public class ListPanel extends JPanel {
 		model.setColumnCount(columns);
 		model.setRowCount(Archive.library.getLibrary().size());
 		
-		JLabel jLabel = new JLabel("Search result:");
+		
 		table = new JTable(model);
 		table.getColumnModel().getColumn(columns - 1).setPreferredWidth(10);
 		table.getColumnModel().getColumn(columns - 2).setPreferredWidth(10);
@@ -74,7 +74,6 @@ public class ListPanel extends JPanel {
         selectionModel.addListSelectionListener(new RowListener()); 
 
 		scrollPane = new JScrollPane(table);
-		this.add(jLabel);
 		table.setToolTipText("Click for more info");
 	    this.add(scrollPane);
 	    
