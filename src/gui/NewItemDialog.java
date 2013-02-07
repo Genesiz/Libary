@@ -174,13 +174,9 @@ public class NewItemDialog extends JDialog {
 			genre = jtfGenre.getText();
 		
 		try {
-			if (jcbType.getSelectedItem() == "Music") 
 				Archive.instance.addItem(new Music(title, author, length, 
-						genre, rating, ItemType.MUSIC));
-			
-			else 
-				Archive.instance.addItem(new Book(title, author, length,
-						genre, rating, ItemType.BOOK));
+						genre, rating, (ItemType) jcbType.getSelectedItem()));
+
 			ListPanel.updateList();
 		} 
 		catch (IllegalItemException e) {
