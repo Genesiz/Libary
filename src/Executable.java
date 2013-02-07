@@ -1,17 +1,3 @@
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.JWindow;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import gui.MainFrame;
